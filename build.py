@@ -577,4 +577,9 @@ if SITE.get("noindex"):
     vercel["headers"].append({"source": "/(.*)", "headers": [{"key": "X-Robots-Tag", "value": "noindex, nofollow"}]})
 with open(os.path.join(OUTDIR, "vercel.json"), "w") as f:
     json.dump(vercel, f, indent=2)
+# Vercel leest bij een build vanuit GitHub de vercel.json in de hoofdmap: die houden we gelijk.
+# Na een wijziging aan noindex: opnieuw bouwen en vercel.json mee committen.
+if MODE != "staging":
+    with open(os.path.join(ROOT, "vercel.json"), "w") as f:
+        json.dump(dict({"framework": None, "buildCommand": "python3 build.py", "outputDirectory": "dist", "installCommand": ""}, **vercel), f, indent=2)
 print("Gebouwd:", OUT, "-", len(PAGINAS), "pagina's")
