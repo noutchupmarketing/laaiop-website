@@ -520,6 +520,55 @@ def voeg_toe(pad, *args, **kw):
 from pages import bouw_paginas
 bouw_paginas(globals())
 
+# Beginscherm "Binnenkort meer": zolang SITE["binnenkort"] aan staat, bestaat de publieke site alleen uit dit scherm.
+# Voorbeeldbuilds op Vercel (andere branch dan main), staging en `python3 build.py volledig` tonen wel de volledige site.
+BINNENKORT = bool(SITE.get("binnenkort")) and MODE not in ("staging", "volledig") and os.environ.get("VERCEL_ENV") != "preview"
+
+def binnenkort():
+    head = f"""<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Laaiop | Binnenkort meer</title>
+<meta name="description" content="Laaiop: opruimen, ontruimen en leveren in de provincie Antwerpen. Binnenkort meer.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#14213D">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/site.css?v={versie('css/site.css')}">
+<style>
+  body {{ background: var(--nachtblauw); color: var(--wit); padding: 0; }}
+  .binnenkort {{ min-height: 100vh; min-height: 100svh; display: grid; place-items: center; padding: 48px var(--gutter) 72px; text-align: center; position: relative; }}
+  .binnenkort::after {{ content: ""; position: fixed; left: 0; right: 0; bottom: 0; height: 12px; background: var(--oranje); }}
+  .binnenkort__in {{ display: grid; gap: 24px; justify-items: center; max-width: 640px; }}
+  .binnenkort__logo {{ width: 190px; height: auto; }}
+  .binnenkort h1 {{ font-size: clamp(2.6rem, 8vw, 4.75rem); line-height: 1; }}
+  .binnenkort h1 em {{ font-style: normal; color: var(--oranje); }}
+  .binnenkort p {{ color: var(--nacht-zacht); font-size: var(--fs-lead); max-width: 46ch; }}
+  .binnenkort .knoppen {{ justify-content: center; }}
+  .binnenkort__mail {{ color: var(--nacht-zacht); font-size: .95rem; }}
+  .binnenkort__mail a {{ color: var(--wit); }}
+  @media (prefers-reduced-motion: no-preference) {{
+    .binnenkort__in > * {{ animation: opkomen .9s var(--zacht) both; }}
+    .binnenkort__in > :nth-child(2) {{ animation-delay: .12s; }}
+    .binnenkort__in > :nth-child(3) {{ animation-delay: .24s; }}
+    .binnenkort__in > :nth-child(n+4) {{ animation-delay: .36s; }}
+  }}
+</style>"""
+    inhoud = f"""<main class="binnenkort donker">
+  <div class="binnenkort__in">
+    <img class="binnenkort__logo" src="/assets/img/logo-negatief.webp" width="400" height="118" alt="Laaiop">
+    <h1>Binnenkort <em>meer</em></h1>
+    <p>Opruimen, ontruimen en leveren in de provincie Antwerpen. Onze website is bijna klaar. Wil je nu al iets laten opruimen? Neem gerust contact op.</p>
+    <div class="knoppen"><a class="knop knop--primair" href="{wa_link()}" target="_blank" rel="noopener">{icoon("chat")}WhatsApp ons</a><a class="knop knop--rand" href="{tel_link()}">{icoon("telefoon")}Bel {tel_tekst()}</a></div>
+    <p class="binnenkort__mail">Of mail naar <a href="mailto:{SITE["email"]}">{SITE["email"]}</a></p>
+  </div>
+</main>"""
+    return head, inhoud
+
+if BINNENKORT:
+    PAGINAS = [("", binnenkort(), False), ("404.html", binnenkort(), True)]
+
 # ====================================================================== SCHRIJVEN
 if os.path.exists(OUTDIR):
     shutil.rmtree(OUTDIR)
@@ -565,7 +614,7 @@ with open(os.path.join(OUTDIR, "site.webmanifest"), "w") as f:
                "icons": [{"src": "/assets/img/icon-192.png", "sizes": "192x192", "type": "image/png"}, {"src": "/assets/img/icon-512.png", "sizes": "512x512", "type": "image/png"}]}, f)
 from pages import llms_txt
 with open(os.path.join(OUTDIR, "llms.txt"), "w") as f:
-    f.write(llms_txt(globals()))
+    f.write("# Laaiop\n\n> Opruimen, ontruimen en leveren in de provincie Antwerpen. De website is binnenkort online.\n" if BINNENKORT else llms_txt(globals()))
 vercel = {"cleanUrls": True, "trailingSlash": True,
           "headers": [{"source": "/assets/(.*)", "headers": [{"key": "Cache-Control", "value": "public, max-age=31536000, immutable"}]},
                       {"source": "/(.*)", "headers": [{"key": "X-Content-Type-Options", "value": "nosniff"}, {"key": "Referrer-Policy", "value": "strict-origin-when-cross-origin"}, {"key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()"}]}]}
