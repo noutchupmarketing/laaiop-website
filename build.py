@@ -525,46 +525,19 @@ bouw_paginas(globals())
 BINNENKORT = bool(SITE.get("binnenkort")) and MODE not in ("staging", "volledig") and os.environ.get("VERCEL_ENV") != "preview"
 
 def binnenkort():
-    head = f"""<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Laaiop | Binnenkort meer</title>
-<meta name="description" content="Laaiop: opruimen, ontruimen en leveren in de provincie Antwerpen. Binnenkort meer.">
+    # Bewust neutraal: geen logo, huisstijl of contactgegevens.
+    head = """<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Binnenkort meer</title>
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#14213D">
-<link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
-<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
-<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/site.css?v={versie('css/site.css')}">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="data:,">
 <style>
-  body {{ background: var(--nachtblauw); color: var(--wit); padding: 0; }}
-  .binnenkort {{ min-height: 100vh; min-height: 100svh; display: grid; place-items: center; padding: 48px var(--gutter) 72px; text-align: center; position: relative; }}
-  .binnenkort::after {{ content: ""; position: fixed; left: 0; right: 0; bottom: 0; height: 12px; background: var(--oranje); }}
-  .binnenkort__in {{ display: grid; gap: 24px; justify-items: center; max-width: 640px; }}
-  .binnenkort__logo {{ width: 190px; height: auto; }}
-  .binnenkort h1 {{ font-size: clamp(2.6rem, 8vw, 4.75rem); line-height: 1; }}
-  .binnenkort h1 em {{ font-style: normal; color: var(--oranje); }}
-  .binnenkort p {{ color: var(--nacht-zacht); font-size: var(--fs-lead); max-width: 46ch; }}
-  .binnenkort .knoppen {{ justify-content: center; }}
-  .binnenkort__mail {{ color: var(--nacht-zacht); font-size: .95rem; }}
-  .binnenkort__mail a {{ color: var(--wit); }}
-  @media (prefers-reduced-motion: no-preference) {{
-    .binnenkort__in > * {{ animation: opkomen .9s var(--zacht) both; }}
-    .binnenkort__in > :nth-child(2) {{ animation-delay: .12s; }}
-    .binnenkort__in > :nth-child(3) {{ animation-delay: .24s; }}
-    .binnenkort__in > :nth-child(n+4) {{ animation-delay: .36s; }}
-  }}
+  html, body { margin: 0; height: 100%; background: #000; color: #fff; }
+  body { display: grid; place-items: center; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+  h1 { margin: 0; padding: 0 16px; font-weight: 600; font-size: clamp(2rem, 7vw, 4rem); letter-spacing: -0.02em; text-align: center; }
 </style>"""
-    inhoud = f"""<main class="binnenkort donker">
-  <div class="binnenkort__in">
-    <img class="binnenkort__logo" src="/assets/img/logo-negatief.webp" width="400" height="118" alt="Laaiop">
-    <h1>Binnenkort <em>meer</em></h1>
-    <p>Opruimen, ontruimen en leveren in de provincie Antwerpen. Onze website is bijna klaar. Wil je nu al iets laten opruimen? Neem gerust contact op.</p>
-    <div class="knoppen"><a class="knop knop--primair" href="{wa_link()}" target="_blank" rel="noopener">{icoon("chat")}WhatsApp ons</a><a class="knop knop--rand" href="{tel_link()}">{icoon("telefoon")}Bel {tel_tekst()}</a></div>
-    <p class="binnenkort__mail">Of mail naar <a href="mailto:{SITE["email"]}">{SITE["email"]}</a></p>
-  </div>
-</main>"""
-    return head, inhoud
+    return head, "<h1>Binnenkort meer</h1>"
 
 if BINNENKORT:
     PAGINAS = [("", binnenkort(), False), ("404.html", binnenkort(), True)]
@@ -573,8 +546,9 @@ if BINNENKORT:
 if os.path.exists(OUTDIR):
     shutil.rmtree(OUTDIR)
 os.makedirs(OUTDIR)
-shutil.copytree(os.path.join(ROOT, "assets"), os.path.join(OUTDIR, "assets"))
-shutil.copy(os.path.join(ROOT, "favicon.ico"), OUTDIR)
+if not BINNENKORT:
+    shutil.copytree(os.path.join(ROOT, "assets"), os.path.join(OUTDIR, "assets"))
+    shutil.copy(os.path.join(ROOT, "favicon.ico"), OUTDIR)
 
 for pad, (head, inhoud), _ in PAGINAS:
     doel = os.path.join(OUTDIR, pad, "index.html") if pad and not pad.endswith(".html") else os.path.join(OUTDIR, pad or "index.html")
@@ -609,12 +583,13 @@ with open(os.path.join(OUTDIR, "robots.txt"), "w") as f:
         for bot in ["GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-SearchBot", "PerplexityBot", "Google-Extended", "Applebot-Extended", "Bingbot"]:
             f.write("User-agent: %s\nAllow: /\n\n" % bot)
         f.write("Sitemap: %s/sitemap.xml\n" % SITE["url"])
-with open(os.path.join(OUTDIR, "site.webmanifest"), "w") as f:
+if not BINNENKORT:
+  with open(os.path.join(OUTDIR, "site.webmanifest"), "w") as f:
     json.dump({"name": "Laaiop", "short_name": "Laaiop", "start_url": "/", "display": "standalone", "background_color": "#FFFFFF", "theme_color": "#14213D",
                "icons": [{"src": "/assets/img/icon-192.png", "sizes": "192x192", "type": "image/png"}, {"src": "/assets/img/icon-512.png", "sizes": "512x512", "type": "image/png"}]}, f)
 from pages import llms_txt
 with open(os.path.join(OUTDIR, "llms.txt"), "w") as f:
-    f.write("# Laaiop\n\n> Opruimen, ontruimen en leveren in de provincie Antwerpen. De website is binnenkort online.\n" if BINNENKORT else llms_txt(globals()))
+    f.write("Binnenkort meer\n" if BINNENKORT else llms_txt(globals()))
 vercel = {"cleanUrls": True, "trailingSlash": True,
           "headers": [{"source": "/assets/(.*)", "headers": [{"key": "Cache-Control", "value": "public, max-age=31536000, immutable"}]},
                       {"source": "/(.*)", "headers": [{"key": "X-Content-Type-Options", "value": "nosniff"}, {"key": "Referrer-Policy", "value": "strict-origin-when-cross-origin"}, {"key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()"}]}]}
