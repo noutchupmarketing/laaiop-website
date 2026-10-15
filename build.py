@@ -197,7 +197,6 @@ def footer(formeel=False, ctx="standaard"):
         <li><a href="{tel_link()}" data-track="klik_telefoon" data-locatie="footer">{icoon("telefoon")}{tel_tekst()}</a></li>
         <li><a href="{wa_link()}" data-track="klik_whatsapp" data-locatie="footer" target="_blank" rel="noopener">{icoon("chat")}WhatsApp: stuur een foto</a></li>
         <li><a href="mailto:{SITE["email"]}">{icoon("document")}{SITE["email"]}</a></li>
-        <li>Btw {ph("{{BTW}}")}</li>
       </ul><a class="knop knop--primair knop--klein" href="{(CONTEXT[ctx]["cta"][1] if ctx in ("plaatsbezoek", "offerte") else "/richtprijs/")}">{(CONTEXT[ctx]["cta"][0] if ctx in ("plaatsbezoek", "offerte") else "Vraag je prijs aan")}</a></div>
       <details class="footer__groep" open><summary><h2>Diensten</h2></summary><ul>{diensten}</ul></details>
       <details class="footer__groep" open><summary><h2>Laaiop</h2></summary><ul>
@@ -370,7 +369,6 @@ def org_schema():
         "hasOfferCatalog": {"@type": "OfferCatalog", "name": "Diensten van Laaiop", "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": d["naam"], "url": SITE["url"] + "/" + d["slug"] + "/"}} for d in DIENSTEN]},
     }
     if SITE.get("telefoon_link"): o["telephone"] = SITE["telefoon_link"]
-    if PLACEHOLDERS.get("BTW"): o["vatID"] = PLACEHOLDERS["BTW"]
     if REVIEWS_KLAAR and PLACEHOLDERS.get("SCORE") and PLACEHOLDERS.get("AANTAL_REVIEWS"):
         o["aggregateRating"] = {"@type": "AggregateRating", "ratingValue": PLACEHOLDERS["SCORE"].replace(",", "."), "reviewCount": PLACEHOLDERS["AANTAL_REVIEWS"]}
     return o

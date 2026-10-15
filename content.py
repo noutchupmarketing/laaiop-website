@@ -31,16 +31,7 @@ PLACEHOLDERS = {
     "SCORE": None,                    # Google-score, bv. "4,9"
     "AANTAL_REVIEWS": None,           # bv. "34"
     "TERMIJN": "24 uur",              # hoe snel we proberen te antwoorden met een voorlopige offerte
-    "TERMIJN_UITVOERING": None,       # hoe snel ter plaatse, bv. "een week"
-    "DUUR_WONING": None,              # bv. "een tot twee dagen"
-    "INBOEDEL_VERREKENEN": None,      # antwoord: verrekenen, opkopen of doneren?
-    "KGA": None,                      # klein gevaarlijk afval (verf, olie): ja/nee?
-    "ARCHIEF": None,                  # vertrouwelijk archief vernietigen: hoe?
-    "AANSLUITEN": None,               # toestellen aansluiten bij levering: ja/nee?
-    "WEEKEND": None,                  # werken op zaterdag: ja/nee?
     "ZAAKVOERDER": "Keanu Bosmans",              # naam van het gezicht van Laaiop
-    "BTW": None,
-    "VERZEKERING": None,              # bv. "BA-verzekering bij ..."
     "OPRICHTING": "2026",               # jaar van oprichting
 }
 
@@ -88,10 +79,9 @@ DIENSTEN = [
         "foto": ('herinneringen', "Handen die oude familiefoto's in een album aanwijzen", "Foto's, brieven, een trouwalbum. Laaiop legt persoonlijke spullen apart voor de familie. Dat doen we voordat we iets afvoeren."),
 
         "faq": [
-            ("Hoe snel kan de woning leeg zijn?", "Meestal kunnen we binnen {{TERMIJN_UITVOERING}} na uw akkoord beginnen. Een gemiddelde gezinswoning maken we in {{DUUR_WONING}} leeg. Heeft u meer tijd nodig, dan volgen wij uw tempo."),
+            ("Hoe snel kan de woning leeg zijn?", "Dat hangt af van de grootte van de woning en onze planning. We spreken samen een datum af die voor u past. Heeft u meer tijd nodig, dan volgen wij uw tempo."),
             ("Moet ik aanwezig zijn tijdens de ontruiming?", "Nee. Veel families geven ons de sleutel of laten de notaris of makelaar openen. Na afloop krijgt u foto's van elke lege kamer."),
             ("Wat gebeurt er met waardevolle spullen en documenten?", "We leggen alles wat persoonlijk lijkt apart in een afgesloten doos. Denk aan papieren, foto's, juwelen, bankkaarten en sleutels. Die krijgt u terug, ook als u niet aanwezig was."),
-            ("Wordt de waarde van de inboedel verrekend?", "{{INBOEDEL_VERREKENEN}}"),
             ("Werken jullie samen met de notaris of de makelaar?", "Ja. Als u dat wenst, maken we rechtstreeks afspraken met de notaris of de makelaar over de sleutels en de opleverdatum. We sturen dan ook de foto's van de lege woning door."),
             ("Is de woning daarna klaar voor verkoop of overdracht?", "Ja. Alle kamers, de kelder, de zolder en het tuinhuis zijn leeg. De vloeren zijn geveegd. Dat noemen we bezemschoon: zo kan de woning naar de koper, de verhuurder of de volgende huurder."),
         ],
@@ -130,7 +120,7 @@ DIENSTEN = [
             ("Kan ik een deel van de inboedel laten staan?", "Ja. Duid aan wat blijft, met een sticker of op een foto. Wij nemen alleen mee wat weg mag."),
             ("Moeten de kasten leeg zijn voor jullie komen?", "Nee. We ledigen ze zelf en kijken daarbij uit naar papieren of spullen die je misschien wil houden."),
             ("Nemen jullie ook elektrische toestellen mee?", "Ja. Koelkasten, wasmachines, tv's en klein elektro brengen we naar een erkend inzamelpunt van Recupel."),
-            ("Hoe lang duurt een inboedelruiming?", "Een kamer of berging is meestal in enkele uren leeg. Een volledige woning leegmaken duurt {{DUUR_WONING}}."),
+            ("Hoe lang duurt een inboedelruiming?", "Een kamer of berging is meestal in enkele uren leeg. Hoe lang een volledige woning duurt, hangt af van de grootte. Dat hoor je bij de offerte."),
             ("Wat kost een inboedelruiming?", "Dat hangt af van het volume, de verdieping en wat er in de inboedel zit. Stuur ons een paar duidelijke foto's. We proberen je binnen {{TERMIJN}} te antwoorden met een voorlopige offerte. Die bevestigen we nadat we langs zijn geweest."),
         ],
         "zoekwoorden": ["inboedel opruimen", "inboedel leegmaken", "inboedelruiming", "huis leeghalen"],
@@ -205,9 +195,7 @@ DIENSTEN = [
         "faq": [
             ("Is het de moeite voor een kleine opdracht?", "Ja. We komen ook voor een halve garage of een volle kelder."),
             ("Moet ik vooraf sorteren?", "Nee. Zet alleen apart wat je wil houden. Het sorteren doen wij, bij het laden en bij de afvoer."),
-            ("Nemen jullie verfpotten en chemicaliën mee?", "{{KGA}}"),
-            ("Kunnen jullie op zaterdag komen?", "{{WEEKEND}}"),
-            ("Hoe snel kunnen jullie komen?", "Meestal binnen {{TERMIJN_UITVOERING}}. Is het dringend, zeg het dan in je bericht."),
+            ("Hoe snel kunnen jullie komen?", "Dat hangt af van onze planning. Is het dringend, zeg het dan in je bericht."),
         ],
         "zoekwoorden": ["garage opruimen", "zolder leegmaken", "kelder opruimen", "rommel laten ophalen"],
     },
@@ -234,7 +222,6 @@ DIENSTEN = [
             "Bureaus, kasten, stoelen, rekken, toonbanken en vitrines",
             "Demontage van werkplekken en wandrekken",
             "Elektro en IT-materiaal naar een erkende verwerker",
-            "Archief: {{ARCHIEF}}",
             "Bruikbaar meubilair krijgt een tweede leven",
             "Fotoverslag bij de oplevering voor de verhuurder of eigenaar",
         ],
@@ -242,7 +229,6 @@ DIENSTEN = [
 
         "faq": [
             ("Kunnen jullie buiten de openingsuren werken?", "Ja. We plannen de ontruiming 's avonds, vroeg in de ochtend of in het weekend, zodat uw zaak zo kort mogelijk dicht is."),
-            ("Hoe gaan jullie om met vertrouwelijk archief?", "{{ARCHIEF}}"),
             ("Krijg ik een factuur?", "Ja, een factuur met btw op naam van uw bedrijf."),
             ("Kan bruikbaar meubilair een tweede leven krijgen?", "Ja. Bureaus, stoelen en kasten in goede staat gaan naar een kringwinkel of een goed doel. Dat verlaagt ook de afvoerkosten."),
             ("Werken jullie ook voor makelaars en syndici?", "Ja. Zie onze pagina voor professionals: één aanspreekpunt, vaste afspraken en foto's als bewijs."),
@@ -283,7 +269,7 @@ DIENSTEN = [
             ("Moet het grofvuil buiten klaarstaan?", "Nee. We halen het op waar het staat, ook op zolder of op de derde verdieping."),
             ("Wat gebeurt er met een oude koelkast?", "Koelkasten en diepvriezers bevatten koelgassen. We brengen ze naar een Recupel-inzamelpunt, waar ze veilig verwerkt worden."),
             ("Is dit niet goedkoper via het containerpark?", "Als je zelf een aanhangwagen en twee sterke armen hebt, wel. Zo niet, dan bespaar je met Laaiop een namiddag sleuren en rijden."),
-            ("Hoe snel kunnen jullie het ophalen?", "Meestal binnen {{TERMIJN_UITVOERING}}. Vaak combineren we het met een rit in de buurt."),
+            ("Hoe snel kunnen jullie het ophalen?", "Dat hangt af van onze planning. Vaak combineren we het met een rit in de buurt, dan gaat het sneller."),
         ],
         "zoekwoorden": ["grofvuil laten ophalen", "grof huisvuil ophalen", "zetel laten ophalen", "matras ophalen"],
     },
@@ -385,7 +371,6 @@ DIENSTEN = [
             "Tweedehands gekocht? Wij halen het op bij de verkoper",
             "Naar binnen en op zijn plaats gezet, ook op de verdieping",
             "Het oude meubel of toestel nemen we meteen mee",
-            "Aansluiten: {{AANSLUITEN}}",
             "Ook voor winkels die hun klanten een levering willen aanbieden",
         ],
         "foto": ('nieuwe-koelkast', 'Nieuwe inox koelkast op zijn plaats in een lichte keuken', 'Nieuwe koelkast op zijn plaats, oude mee naar buiten. Eén rit en één prijs bij Laaiop.'),
@@ -393,8 +378,6 @@ DIENSTEN = [
         "faq": [
             ("Halen jullie ook op bij een particulier, bijvoorbeeld via 2dehands?", "Ja. Geef ons het adres van de verkoper en een moment dat past. Wij halen het op en brengen het naar jou."),
             ("Nemen jullie het oude toestel mee?", "Ja, in dezelfde rit. Oude koelkasten en wasmachines brengen we naar een Recupel-inzamelpunt."),
-            ("Sluiten jullie het toestel ook aan?", "{{AANSLUITEN}}"),
-            ("Is mijn meubel verzekerd tijdens het transport?", "{{VERZEKERING}}"),
             ("Werken jullie samen met winkels?", "Ja. Meubel- en elektrowinkels kunnen hun klanten een levering door Laaiop aanbieden. Neem contact op voor een samenwerking."),
         ],
         "zoekwoorden": ["meubels laten leveren", "koelkast laten leveren", "transport zetel", "oude koelkast meenemen"],
@@ -465,7 +448,6 @@ FAQ_ALGEMEEN = [
     ("Moet ik een parkeerplaats voorzien?", "Ja, graag. Zorg dat onze camionette op de dag zelf voor de deur of vlak in de buurt kan staan, bijvoorbeeld op je oprit of op een vrije plek in de straat. Borden of een parkeerverbod via de gemeente zijn niet nodig. Is parkeren bij jou lastig? Laat het ons vooraf weten."),
     ("Moet ik aanwezig zijn?", "Nee. Je kunt ons de sleutel geven of iemand laten openen. Na afloop krijg je foto's van de lege ruimte."),
     ("Wat gebeurt er met spullen die nog bruikbaar zijn?", "Die krijgen een tweede leven via een kringwinkel of een goed doel. Metaal, hout, elektro en puin gaan elk naar de juiste verwerker. Niets belandt in een berm of bos."),
-    ("Zijn jullie verzekerd?", "Ja. {{VERZEKERING}}"),
     ("In welke gemeenten werken jullie?", "In de hele provincie Antwerpen: van Antwerpen en Mechelen tot Lier, Turnhout, Geel, Mol en Herentals, en alle gemeenten daartussen."),
     ("Nemen jullie asbest mee?", "Nee. Asbest vraagt een erkende asbestverwijderaar. Twijfel je? Stuur een foto, dan zeggen we het je."),
     ("Krijg ik een factuur?", "Ja. Particulieren en bedrijven krijgen een factuur. Bedrijven met een btw-nummer krijgen een factuur op naam van het bedrijf."),

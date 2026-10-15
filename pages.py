@@ -392,7 +392,7 @@ def realisaties():
 # ------------------------------------------------------------------ OVER ONS
 def over_ons():
     feiten = [("Naam", "Laaiop"), ("Wat", "Opruim- en ontruimingsdienst, ophalen en leveren"), ("Werkgebied", "Provincie Antwerpen"),
-              ("Sinds", "{{OPRICHTING}}"), ("Zaakvoerder", "{{ZAAKVOERDER}}"), ("Btw-nummer", "{{BTW}}"), ("Contact", SITE["email"])]
+              ("Sinds", "{{OPRICHTING}}"), ("Zaakvoerder", "{{ZAAKVOERDER}}"), ("Contact", SITE["email"])]
     body = f"""<section class="paginahero paginahero--donker"><div class="wrap paginahero__in"><div class="paginahero__tekst">
   {kruimel([("Home", "/"), ("Over ons", None)])}
   <h1>De handige buurman die altijd helpt</h1>
@@ -403,7 +403,6 @@ def over_ons():
     <span class="eyebrow">Ons verhaal</span>
     <h2>Waarom Laaiop bestaat</h2>
     <p>Wie een woning, garage of kantoor moet leegmaken, botst op dezelfde vragen. Wat gaat het kosten? Komen ze wel op tijd? En waar belandt al dat gerief? Laaiop werd opgericht om op elk van die vragen een duidelijk antwoord te geven.</p>
-    <p><mark class="ph">[VERHAAL ZAAKVOERDER]</mark> Hier komt in een paar zinnen wie {ph("{{ZAAKVOERDER}}")} is, waarom hij of zij Laaiop startte en wat de klant van hem of haar mag verwachten. Echte namen en een echte foto verhogen het vertrouwen meer dan eender welke slogan.</p>
     <h2>De naam</h2>
     <p>"Laai op" is hoe ze in de provincie Antwerpen zeggen dat iets op de camionette moet. In ons logo zie je het meteen: de L is een steekkar met een oude zetel erop. Wij laden op. Jij ademt op.</p>
   </div>
@@ -522,7 +521,6 @@ def richtprijs():
       <li><strong>Telefoon</strong><span>{tel_tekst()}</span></li>
       <li><strong>WhatsApp</strong><span>{tel_tekst()}</span></li>
       <li><strong>E-mail</strong><span><a href="mailto:{SITE["email"]}">{SITE["email"]}</a></span></li>
-      <li><strong>Btw</strong><span>{ph("{{BTW}}")}</span></li>
       <li><strong>Werkgebied</strong><span>Provincie Antwerpen</span></li>
     </ul></div>
     <div class="stapel"><h3>Wat gebeurt er na je aanvraag?</h3><ul class="vinkjes"><li>We bekijken je foto's</li><li>We proberen je binnen {ph("{{TERMIJN}}")} te antwoorden met een voorlopige offerte</li><li>We komen langs en bevestigen de offerte</li><li>Je kiest een dag, wij laden op</li></ul></div>
@@ -547,7 +545,6 @@ def juridisch(pad, titel, h1, secties):
     inhoud = "".join(f"<h2>{t}</h2><p>{p}</p>" for t, p in secties)
     body = f"""<section class="paginahero"><div class="wrap paginahero__in"><div class="paginahero__tekst">
   {kruimel([("Home", "/"), (h1, None)])}<h1>{h1}</h1>
-  <p class="lead"><mark class="ph">[JURIDISCH NAKIJKEN]</mark> Ontwerptekst. Laat deze pagina nakijken voor de lancering.</p>
 </div></div></section>
 <section class="sectie"><div class="wrap wrap--smal"><div class="artikel">{inhoud}<p class="bijgewerkt">Laatst bijgewerkt: {SITE["bijgewerkt"]}</p></div></div></section>"""
     voeg_toe(pad, titel + " | Laaiop", titel + " van Laaiop, opruim- en ontruimingsdienst in de provincie Antwerpen.", body)
@@ -555,7 +552,7 @@ def juridisch(pad, titel, h1, secties):
 
 def juridische_paginas():
     juridisch("privacybeleid/", "Privacybeleid", "Privacybeleid", [
-        ("Wie zijn wij?", "Laaiop, btw " + ph("{{BTW}}") + ", e-mail " + SITE["email"] + ". Wij zijn verantwoordelijk voor de verwerking van je persoonsgegevens."),
+        ("Wie zijn wij?", "Laaiop, e-mail " + SITE["email"] + ". Wij zijn verantwoordelijk voor de verwerking van je persoonsgegevens."),
         ("Welke gegevens", "Naam, telefoonnummer, e-mailadres, gemeente, de foto's die je ons stuurt en je opmerkingen."),
         ("Waarom", "Om je een prijs te bezorgen, de opdracht uit te voeren en te factureren. De rechtsgrond is de uitvoering van een overeenkomst of het nemen van stappen op jouw verzoek."),
         ("Hoe lang", "Aanvragen zonder opdracht bewaren we maximaal twaalf maanden. Facturen bewaren we zo lang als de wet voorschrijft."),
@@ -569,10 +566,8 @@ def juridische_paginas():
     ])
     juridisch("algemene-voorwaarden/", "Algemene voorwaarden", "Algemene voorwaarden", [
         ("Prijs", "De prijs in onze bevestiging is vast en omvat laden, transport, afvoer en vegen, tenzij anders vermeld. Staat er op de dag van uitvoering duidelijk meer of ander afval dan op de foto's of bij het plaatsbezoek? Dan bespreken we een aangepaste prijs voor we het meenemen."),
-        ("Wat we niet meenemen", "Asbest, gasflessen, munitie en andere gevaarlijke stoffen nemen we niet mee. " + ph("{{KGA}}")),
-        ("Annuleren", "[AF TE SPREKEN] Annulatievoorwaarden en termijn."),
-        ("Betaling", "Betaling na uitvoering, op factuur, binnen [TERMIJN] dagen."),
-        ("Aansprakelijkheid", ph("{{VERZEKERING}}")),
+        ("Wat we niet meenemen", "Asbest, gasflessen, munitie en andere gevaarlijke stoffen nemen we niet mee."),
+        ("Betaling", "Betaling na uitvoering, op factuur."),
     ])
 
 
