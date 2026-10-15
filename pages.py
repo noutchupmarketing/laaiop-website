@@ -10,12 +10,12 @@ def _laad(g):
 
 # ------------------------------------------------------------------ HOME
 def home():
-    chat = f"""<div class="chatkaart" role="img" aria-label="Voorbeeldgesprek: een klant stuurt via WhatsApp een foto van een volle garage, krijgt een prijsindicatie en spreekt een plaatsbezoek af.">
+    chat = f"""<div class="chatkaart" role="img" aria-label="Voorbeeldgesprek: een klant stuurt via WhatsApp een foto van een volle garage, krijgt een voorlopige offerte en spreekt een bezoek af om die te bevestigen.">
   <div class="gsm__balk"><span class="gsm__avatar"><img src="/assets/img/icon-192.png" width="22" height="22" alt=""></span><span><span class="gsm__naam">Laaiop</span><span class="gsm__status">WhatsApp</span></span><span class="chatkaart__label">Voorbeeldgesprek</span></div>
   <div class="gsm__chat">
     <div class="bel bel--ik"><div class="bel__foto"><img src="/assets/foto/volle-garage-640.webp" width="640" height="480" alt="" fetchpriority="high"></div>Dit mag allemaal weg. Garage in Mortsel, gelijkvloers.<span class="bel__tijd">09:12</span></div>
-    <div class="bel bel--zij">Dank je! Laden, afvoer en vegen inbegrepen.<div class="bel__prijs"><span>Prijsindicatie</span><span>{ph("{{PRIJS_GARAGE}}")}</span></div><span class="bel__tijd">09:31</span></div>
-    <div class="bel bel--ik bel--extra">Top. Komen jullie donderdag kijken voor de offerte?<span class="bel__tijd">09:33</span></div>
+    <div class="bel bel--zij">Dank je! Je voorlopige offerte zit in je mailbox: laden, afvoer en vegen inbegrepen.<span class="bel__tijd">09:31</span></div>
+    <div class="bel bel--ik bel--extra">Top. Komen jullie donderdag langs om ze te bevestigen?<span class="bel__tijd">09:33</span></div>
   </div>
 </div>"""
 
@@ -24,7 +24,7 @@ def home():
     <div class="hero__tekst">
       <span class="eyebrow">Opruimen, ontruimen en leveren in de provincie Antwerpen</span>
       <h1 id="hero-titel">Laaiop maakt je woning, garage of zolder leeg. <em>Zonder verrassingen.</em></h1>
-      <p class="lead">Stuur ons een paar duidelijke foto's via WhatsApp. Binnen {ph("{{TERMIJN}}")} krijg je een <strong>prijsindicatie</strong>. Daarna komen we kijken en maken we de definitieve offerte op locatie, met laden, afvoer en opkuis erin.</p>
+      <p class="lead">Stuur ons een paar duidelijke foto's via WhatsApp. We proberen je binnen {ph("{{TERMIJN}}")} te antwoorden met een <strong>voorlopige offerte</strong>. Die bevestigen we nadat we langs zijn geweest, met laden, afvoer en opkuis erin.</p>
       <div class="knoppen">
         <a class="knop knop--primair" href="/richtprijs/">Vraag je prijs aan</a>
         <a class="knop knop--rand" href="{wa_link()}" data-track="klik_whatsapp" data-locatie="hero" target="_blank" rel="noopener">{icoon("chat")}WhatsApp een foto</a>
@@ -39,8 +39,8 @@ def home():
 
     strook = f"""<section class="strook" aria-label="Waarom Laaiop">
   <div class="wrap"><ul>
-    <li>{icoon("camera")}<div><strong>Prijsindicatie via foto's</strong><span>Antwoord binnen {ph("{{TERMIJN}}")}</span></div></li>
-    <li>{icoon("euro")}<div><strong>Offerte op locatie</strong><span>Definitief, voor we beginnen</span></div></li>
+    <li>{icoon("camera")}<div><strong>Voorlopige offerte via foto's</strong><span>Meestal binnen {ph("{{TERMIJN}}")}</span></div></li>
+    <li>{icoon("euro")}<div><strong>Bevestigd na ons bezoek</strong><span>Vast, voor we beginnen</span></div></li>
     <li>{icoon("bezem")}<div><strong>Alles in één keer</strong><span>Laden, afvoeren, vegen</span></div></li>
     <li>{icoon("kringloop")}<div><strong>Tweede leven</strong><span>Bruikbaar gerief naar de kringwinkel</span></div></li>
   </ul></div>
@@ -57,8 +57,8 @@ def home():
   </div>
 </section>"""
 
-    prijskaart = f"""<div class="prijskaart" role="img" aria-label="Voorbeeld van een offerte van Laaiop">
-  <div class="prijskaart__kop"><img src="/assets/img/logo-positief.webp" width="400" height="118" alt=""><span class="label label--groen">Offerte</span></div>
+    prijskaart = f"""<div class="prijskaart" role="img" aria-label="Voorbeeld van een voorlopige offerte van Laaiop">
+  <div class="prijskaart__kop"><img src="/assets/img/logo-positief.webp" width="400" height="118" alt=""><span class="label label--groen">Voorlopige offerte</span></div>
   <dl>
     <div><dt>Opdracht</dt><dd>Garage leegmaken</dd></div>
     <div><dt>Gemeente</dt><dd>Mortsel, gelijkvloers</dd></div>
@@ -66,7 +66,7 @@ def home():
     <div><dt>Transport en afvoer</dt><dd>Inbegrepen</dd></div>
     <div><dt>Vegen na afloop</dt><dd>Inbegrepen</dd></div>
   </dl>
-  <div class="prijskaart__totaal"><span>Totaal<small>btw inbegrepen</small></span><span>{ph("{{PRIJS_GARAGE}}")}</span></div>
+  <div class="prijskaart__totaal"><span>Prijs op maat<small>bevestigd na ons bezoek</small></span></div>
 </div>"""
 
     route = f"""<div class="route">
@@ -80,7 +80,7 @@ def home():
     <div class="werkwijze-home">
       <div class="stapel stapel--groot">
         <div class="kop" style="margin-bottom:0"><span class="eyebrow">Zo werkt het</span><h2 id="werkwijze-titel">Van foto tot lege ruimte, in vier stappen</h2>
-        <p>Je stuurt duidelijke foto's en krijgt snel een prijsindicatie. De definitieve offerte maken we op locatie. Zo weet je precies wat het kost, voor we beginnen.</p></div>
+        <p>Je stuurt duidelijke foto's en krijgt snel een voorlopige offerte. Die bevestigen we nadat we langs zijn geweest. Zo weet je precies wat het kost, voor we beginnen.</p></div>
         {stappen()}
         <div class="knoppen"><a class="knop knop--primair" href="#prijs-aanvragen">Vraag je prijs aan</a><a class="tekstlink" href="/werkwijze/">Meer over onze werkwijze</a></div>
       </div>
@@ -122,8 +122,7 @@ def home():
       {voor_na("Woning na overlijden in [GEMEENTE].", "[Korte beschrijving]")}
       {voor_na("Zolder in [GEMEENTE].", "[Korte beschrijving]")}
     </div>
-    <div class="cta-rij"><a class="tekstlink" href="/realisaties/">Alle realisaties</a></div>
-  </div>
+      </div>
 </section>"""
 
     lokaal = f"""<section class="sectie sectie--mist sectie--compact" aria-labelledby="lokaal-titel">
@@ -171,19 +170,22 @@ def home():
     # Voor-en-na en het lokaal-blok komen pas terug met echte foto's; prijsblok sluit de pagina af.
     body = hero + strook + diensten + band + werkwijze + statement + features + (reviews if REVIEWS_KLAAR else "") + (voorna if VOOR_NA_KLAAR else "") + faq + prijsblok()
     voeg_toe("", "Ontruiming en opruimdienst provincie Antwerpen | Laaiop",
-             "Woning, garage of zolder leegmaken in de provincie Antwerpen? Laaiop ruimt op, voert af en levert. Prijsindicatie via foto, offerte op locatie.",
+             "Woning, garage of zolder leegmaken in de provincie Antwerpen? Laaiop ruimt op, voert af en levert. Voorlopige offerte via foto's, bevestigd na ons bezoek.",
              body, actief="/", schema=[faq_schema(FAQ_ALGEMEEN[:4])], preload="/assets/foto/volle-garage-640.webp")
 
 
 # ------------------------------------------------------------------ DIENSTPAGINA'S
 def prijs_kaart_dienst(d, u):
-    rijen, inbegrepen = PRIJS_KAART[d["slug"]]
-    r = "".join('<div><dt>%s</dt><dd>%s</dd></div>' % (l, ph("{{%s}}" % k)) for l, k in rijen)
+    # Geen bedragen: een prijs krijg je alleen na foto's, als voorlopige offerte die we na ons bezoek bevestigen.
+    stap1 = "U stuurt foto's" if u else "Je stuurt foto's"
     return f"""<div class="dienstprijs">
-  <p class="dienstprijs__kop">Richtprijs</p>
-  <dl>{r}</dl>
-  <p class="dienstprijs__incl">{icoon("check")}<span>{inbegrepen}</span></p>
-  <p class="klein zacht">{"Uw" if u else "Je"} definitieve offerte maken we op locatie.</p>
+  <p class="dienstprijs__kop">Zo {"krijgt u uw" if u else "krijg je je"} prijs</p>
+  <dl>
+    <div><dt>Stap 1</dt><dd>{stap1}</dd></div>
+    <div><dt>Stap 2, meestal binnen {ph("{{TERMIJN}}")}</dt><dd>Een voorlopige offerte</dd></div>
+    <div><dt>Stap 3</dt><dd>Bevestigd na ons bezoek</dd></div>
+  </dl>
+  <p class="dienstprijs__incl">{icoon("check")}<span>{INBEGREPEN[d["slug"]]}</span></p>
   <a class="knop knop--primair" href="#prijs-aanvragen">{d["cta"]}</a>
 </div>"""
 
@@ -249,11 +251,11 @@ def dienstpagina(d):
   <p class="klein zacht">Laaiop werkt in de hele provincie Antwerpen. <a href="/werkgebied/">Bekijk het werkgebied</a>.</p></div>
 </div></section>"""
     if zakelijk:
-        pb = prijsblok("Vraag een offerte op maat", "Beschrijf het pand en geef aan wanneer het leeg moet zijn. U krijgt een offerte op maat na een plaatsbezoek, en een vast aanspreekpunt.", vooraf, True, "offerte")
+        pb = prijsblok("Vraag een offerte op maat", "Beschrijf het pand en geef aan wanneer het leeg moet zijn. U krijgt een voorlopige offerte, die we na een plaatsbezoek bevestigen, en een vast aanspreekpunt.", vooraf, True, "offerte")
     elif u:
-        pb = prijsblok("Plan een gratis plaatsbezoek", "Wij komen langs op een moment dat voor u past en maken de offerte ter plaatse.", vooraf, True, "plaatsbezoek")
+        pb = prijsblok("Plan een gratis plaatsbezoek", "Op basis van uw foto's krijgt u een voorlopige offerte. Wij komen langs op een moment dat voor u past en bevestigen ze ter plaatse.", vooraf, True, "plaatsbezoek")
     else:
-        pb = prijsblok("Wat kost het bij jou?", "Stuur ons een paar duidelijke foto's. Je krijgt snel een prijsindicatie, de definitieve offerte maken we op locatie.", vooraf, False)
+        pb = prijsblok("Wat kost het bij jou?", "Stuur ons een paar duidelijke foto's. Je krijgt snel een voorlopige offerte, die we bevestigen nadat we langs zijn geweest.", vooraf, False)
     body = hero + kort + watblok + faq + pb + gebied
     service = {"@type": "Service", "name": d["naam"], "serviceType": d["naam"], "description": d["meta"], "url": SITE["url"] + "/" + pad,
                "provider": {"@id": SITE["url"] + "/#organisatie"}, "areaServed": {"@type": "AdministrativeArea", "name": "Provincie Antwerpen"},
@@ -271,7 +273,7 @@ def diensten_overzicht():
     body = f"""<section class="paginahero"><div class="wrap paginahero__in"><div class="paginahero__tekst">
   {kruimel([("Home", "/"), ("Diensten", None)])}
   <h1>Alle diensten van Laaiop</h1>
-  <p class="lead">Leegmaken, ophalen en leveren in de provincie Antwerpen. Voor elke opdracht krijg je een offerte op locatie, inclusief laden, afvoer en opkuis.</p>
+  <p class="lead">Leegmaken, ophalen en leveren in de provincie Antwerpen. Voor elke opdracht krijg je eerst een voorlopige offerte op basis van foto's, die we bevestigen nadat we langs zijn geweest. Laden, afvoer en opkuis zitten erin.</p>
   <div class="knoppen"><a class="knop knop--primair" href="/richtprijs/">Vraag je prijs aan</a></div>
 </div></div></section>
 <section class="sectie"><div class="wrap">{blokken}</div></section>""" + prijsblok()
@@ -280,20 +282,9 @@ def diensten_overzicht():
              body, actief="/diensten/", schema=[kruimel_schema([("Home", "/"), ("Diensten", None)], "diensten/")])
 
 
-# ------------------------------------------------------------------ PRIJZEN
+# ------------------------------------------------------------------ PRIJS EN OFFERTE
 def prijzen():
-    rijen = [
-        ("Losse stukken", "Een zetel, matras, kast of koelkast", "{{PRIJS_LOSSE_STUKKEN}}"),
-        ("Garage, zolder of kelder", "Gemiddelde garage of zolder, een laadbeurt", "{{PRIJS_GARAGE}}"),
-        ("Appartement", "Volledige inboedel, inclusief kelderberging", "{{PRIJS_APPARTEMENT}}"),
-        ("Gezinswoning", "Volledige woning, leeg en geveegd", "{{PRIJS_WONING}}"),
-        ("Kantoor of winkel", "Kleine zaak of kantoor", "{{PRIJS_KANTOOR}}"),
-        ("Groenafval", "Per volle camionette", "{{PRIJS_GROEN}}"),
-        ("Bouwafval", "Per laadbeurt, afhankelijk van gewicht", "{{PRIJS_BOUW}}"),
-        ("Levering", "Nieuw toestel of meubel, oud mee", "{{PRIJS_LEVERING}}"),
-        ("Dampkap", "Reinigen of afbreken", "{{PRIJS_DAMPKAP}}"),
-    ]
-    tabel = "".join(f"<tr><td>{a}<small>{b}</small></td><td>{ph(c)}</td></tr>" for a, b, c in rijen)
+    # Bewust geen bedragen: een prijs krijg je alleen na foto's, als voorlopige offerte die we na ons bezoek bevestigen.
     factoren = "".join(f'<div class="factor">{icoon(i)}<h3>{t}</h3><p>{s}</p></div>' for i, t, s in [
         ("doos", "Het volume", "Hoeveel er weg moet, in kubieke meter of laadbeurten. Dat is de grootste factor."),
         ("trap", "Verdieping en lift", "Gelijkvloers gaat sneller dan de vierde verdieping zonder lift."),
@@ -302,32 +293,32 @@ def prijzen():
         ("bezem", "Demontage en opkuis", "Wandkasten, keukens of vaste rekken uitbreken vraagt meer tijd."),
         ("kringloop", "Wat nog bruikbaar is", "Spullen die naar de kringwinkel kunnen, verlagen de afvoerkosten."),
     ])
-    faq = [("Is de prijs echt vast?", "De prijs in de offerte die we op locatie maken, is de prijs die je betaalt. De prijsindicatie op basis van foto's is een eerste inschatting. Staat er op de dag zelf duidelijk meer dan afgesproken, dan bespreken we dat met je voor we het meenemen."),
+    faq = [("Waarom staan er geen prijzen op de site?", "Omdat geen twee opdrachten hetzelfde zijn. Een volle zolder op de derde verdieping is iets anders dan een garage op de begane grond. Met een paar foto's krijg je snel een voorlopige offerte die past bij jouw opdracht."),
+           ("Hoe snel krijg ik een voorlopige offerte?", "We proberen iedereen binnen {{TERMIJN}} te antwoorden. Hoe duidelijker je foto's, hoe juister de voorlopige offerte."),
+           ("Is de prijs echt vast?", "De prijs in de offerte die we bevestigen nadat we langs zijn geweest, is de prijs die je betaalt. De voorlopige offerte op basis van foto's is een eerste inschatting. Staat er op de dag zelf duidelijk meer dan afgesproken, dan bespreken we dat met je voor we het meenemen."),
            ("Wat zit er in de prijs?", "Laden, dragen, demonteren, transport, de afvoerkosten bij de verwerker en vegen na afloop. Geen verborgen kosten."),
-           ("Is er een minimumtarief?", "Ja, {{MINIMUMTARIEF}}. Daarvoor komen we ook voor een enkele zetel of matras."),
-           ("Is het plaatsbezoek gratis?", "Ja. Voor een volledige woning of een groot pand komen we gratis en vrijblijvend kijken."),
+           ("Is het plaatsbezoek gratis?", "Ja. Voor een volledige woning of een groot pand komen we gratis en vrijblijvend langs om je voorlopige offerte te bevestigen."),
            ("Hoe betaal ik?", "Je krijgt een factuur na de opdracht. Bedrijven krijgen een factuur met btw op naam van het bedrijf.")]
     body = f"""<section class="paginahero"><div class="wrap paginahero__in"><div class="paginahero__tekst">
-  {kruimel([("Home", "/"), ("Prijzen", None)])}
-  <h1>Wat kost een ontruiming bij Laaiop?</h1>
-  <p class="lead">Op basis van duidelijke foto's krijg je snel een prijsindicatie. De definitieve offerte maken we altijd op locatie. Hieronder staan richtprijzen per type opdracht, zodat je weet waar je aan toe bent.</p>
+  {kruimel([("Home", "/"), ("Prijs en offerte", None)])}
+  <h1>Hoe krijg je een prijs bij Laaiop?</h1>
+  <p class="lead">Elke opdracht is anders. Daarom staan er geen vaste prijzen op de site. Je stuurt ons foto's, krijgt een voorlopige offerte en die bevestigen we nadat we langs zijn geweest. Zo betaal je nooit meer dan afgesproken.</p>
+  <div class="knoppen"><a class="knop knop--primair" href="#prijs-aanvragen">Vraag je prijs aan</a><a class="knop knop--rand" href="{wa_link()}" data-track="klik_whatsapp" data-locatie="prijzen-hero" target="_blank" rel="noopener">{icoon("chat")}WhatsApp een foto</a></div>
 </div></div></section>
 <section class="sectie"><div class="wrap">
-  <div class="kop"><span class="eyebrow">Richtprijzen</span><h2>Richtprijzen per opdracht</h2><p>Inclusief laden, transport, afvoer en opkuis. Btw inbegrepen voor particulieren.</p></div>
-  <div class="tabelhouder"><table class="prijstabel"><thead><tr><th scope="col">Opdracht</th><th scope="col">Richtprijs</th></tr></thead><tbody>{tabel}</tbody></table></div>
-  <p class="klein zacht" style="margin-top:12px">Een richtprijs is een indicatie. Het bedrag dat je betaalt, staat in de offerte die we op locatie maken nadat we je foto's hebben bekeken of ter plaatse zijn geweest.</p>
-  <div class="knoppen" style="margin-top:20px"><a class="knop knop--primair" href="#prijs-aanvragen">Vraag je prijs aan</a><a class="knop knop--rand" href="{wa_link()}" data-track="klik_whatsapp" data-locatie="prijzen-tabel" target="_blank" rel="noopener">{icoon("chat")}WhatsApp een foto</a></div>
+  <div class="kop"><span class="eyebrow">Zo werkt het</span><h2>Van foto tot bevestigde offerte</h2><p>Laden, transport, afvoer en opkuis zitten altijd in de offerte. Btw inbegrepen voor particulieren.</p></div>
+  {stappen()}
 </div></section>
 <section class="sectie sectie--mist"><div class="wrap">
-  <div class="kop"><span class="eyebrow">Wat de prijs bepaalt</span><h2>Zes dingen die de prijs bepalen</h2><p>Geen geheimen. Dit is precies waar we naar kijken op je foto's.</p></div>
+  <div class="kop"><span class="eyebrow">Wat de prijs bepaalt</span><h2>Zes dingen die de prijs bepalen</h2><p>Geen geheimen. Dit is precies waar we naar kijken op je foto's en tijdens ons bezoek.</p></div>
   <div class="factoren">{factoren}</div>
 </div></section>
 <section class="sectie"><div class="wrap wrap--smal">
-  <div class="kop"><span class="eyebrow">Vragen over prijzen</span><h2>Veelgestelde vragen over de prijs</h2></div>{faq_html(faq, eerste_open=True)}
-</div></section>""" + prijsblok("Vraag je prijs aan", "Stuur een paar foto's. Binnen " + ph("{{TERMIJN}}") + " krijg je een prijsindicatie.")
-    voeg_toe("prijzen/", "Prijzen ontruiming en opruimdienst | Laaiop",
-             "Wat kost een ontruiming, grofvuil ophalen of een woning leegmaken? Richtprijzen per opdracht en wat de prijs bepaalt. Prijsindicatie via foto's, offerte op locatie.",
-             body, actief="/prijzen/", schema=[faq_schema(faq), kruimel_schema([("Home", "/"), ("Prijzen", None)], "prijzen/")])
+  <div class="kop"><span class="eyebrow">Vragen over de prijs</span><h2>Veelgestelde vragen over de prijs</h2></div>{faq_html(faq, eerste_open=True)}
+</div></section>""" + prijsblok("Vraag je prijs aan", "Stuur een paar foto's. We proberen je binnen " + ph("{{TERMIJN}}") + " te antwoorden met een voorlopige offerte.")
+    voeg_toe("prijzen/", "Prijs en offerte: zo krijg je een prijs | Laaiop",
+             "Wat kost een ontruiming bij Laaiop? Stuur foto's en krijg een voorlopige offerte, die we bevestigen nadat we langs zijn geweest. Dit bepaalt de prijs.",
+             body, actief="/prijzen/", schema=[faq_schema(faq), kruimel_schema([("Home", "/"), ("Prijs en offerte", None)], "prijzen/")])
 
 
 # ------------------------------------------------------------------ WERKWIJZE
@@ -343,17 +334,17 @@ def werkwijze():
     body = f"""<section class="paginahero"><div class="wrap paginahero__in paginahero__in--met-beeld"><div class="paginahero__tekst">
   {kruimel([("Home", "/"), ("Werkwijze", None)])}
   <h1>Zo werkt Laaiop, van foto tot lege ruimte</h1>
-  <p class="lead">Vier stappen, een aanspreekpunt en een offerte op locatie die vastligt voor we beginnen. Zo weet je op elk moment wat er gebeurt.</p>
+  <p class="lead">Vier stappen, een aanspreekpunt en een offerte die vastligt voor we beginnen. Zo weet je op elk moment wat er gebeurt.</p>
   <div class="knoppen"><a class="knop knop--primair" href="#prijs-aanvragen">Vraag je prijs aan</a><a class="knop knop--rand" href="{wa_link()}" data-track="klik_whatsapp" data-locatie="werkwijze-hero" target="_blank" rel="noopener">{icoon("chat")}WhatsApp een foto</a></div>
 </div>{foto("foto-met-gsm", "Hand die met een gsm een foto neemt van een woonkamer", "Stap 1: een foto met je gsm. Meer heeft Laaiop meestal niet nodig.", "foto--hero")}</div></section>
 <section class="sectie sectie--kort" style="padding-bottom:var(--sectie)"><div class="wrap"><div class="artikel" style="margin-inline:auto">
   <span class="eyebrow">Stap voor stap</span>
   <h2>1. Je stuurt duidelijke foto's</h2>
   <p>Neem met je gsm een foto van elke ruimte. Fotografeer liefst vanuit de deuropening, zodat we de hele kamer zien. Vermeld de gemeente, de verdieping en of er een lift is. Stuur je foto's en die informatie via WhatsApp of het formulier op deze site.</p>
-  <h2>2. Je krijgt een prijsindicatie</h2>
-  <p>Binnen {ph("{{TERMIJN}}")} krijg je op basis van je foto's een eerste prijsindicatie. Zo weet je snel of het binnen je budget past.</p>
-  <h2>3. We maken de offerte op locatie</h2>
-  <p>Op een foto zie je niet alles. Daarom komen we altijd kijken voor we de definitieve offerte maken. Zo zien we ook wat er in kasten en op zolder zit, hoe de trap loopt en waar we parkeren. In de offerte zit alles: laden, dragen, demonteren, transport, afvoer en vegen. Je bevestigt en kiest een dag.</p>
+  <h2>2. Je krijgt een voorlopige offerte</h2>
+  <p>We proberen iedereen binnen {ph("{{TERMIJN}}")} te antwoorden. Op basis van je foto's krijg je een voorlopige offerte. Zo weet je snel of het binnen je budget past.</p>
+  <h2>3. We komen langs en bevestigen de offerte</h2>
+  <p>Op een foto zie je niet alles. Daarom komen we altijd langs voor we de offerte bevestigen. Zo zien we ook wat er in kasten en op zolder zit, hoe de trap loopt en waar de camionette kan staan. In de offerte zit alles: laden, dragen, demonteren, transport, afvoer en vegen. Je bevestigt en kiest een dag.</p>
   <h2>4. Wij laden op en leveren leeg op</h2>
   <p>Op de afgesproken dag staat de laadploeg voor de deur. We dragen alles naar buiten, demonteren wat niet door de deur kan en sorteren al bij het laden. Persoonlijke spullen leggen we apart. Je hoeft er niet bij te zijn.</p>
   <p>Als we vertrekken, is de ruimte leeg en geveegd. Kon je er niet bij zijn, dan krijg je foto's van elke kamer. Je betaalt na de opdracht, op factuur.</p>
@@ -364,9 +355,9 @@ def werkwijze():
   <ol class="tips">
     <li><strong>Zet apart wat blijft.</strong><span>Plak een sticker op meubels die blijven of zet ze in een aparte kamer.</span></li>
     <li><strong>Zoek papieren en sleutels.</strong><span>Bankpapieren, foto's en reservesleutels zitten vaak in de laatste lade die je opent.</span></li>
-    <li><strong>Denk aan de parkeerplaats.</strong><span>In een drukke straat vraag je best een tijdelijk parkeerverbod aan bij je gemeente. Wij zeggen je of het nodig is.</span></li>
+    <li><strong>Voorzie een parkeerplaats.</strong><span>Zorg dat onze camionette voor de deur of vlak in de buurt kan staan, bijvoorbeeld op je oprit of een vrije plek in de straat. Borden van de gemeente zijn niet nodig.</span></li>
     <li><strong>Zorg dat water en verlichting beschikbaar zijn.</strong><span>We hebben licht nodig op zolder en in de kelder. We gebruiken water om na te vegen.</span></li>
-    <li><strong>Meld trappen en liften.</strong><span>Een smalle draaitrap of geen lift? Zeg het vooraf, dan zit het in de prijs.</span></li>
+    <li><strong>Meld trappen en liften.</strong><span>Een smalle draaitrap of geen lift? Zeg het vooraf, dan zit het in de offerte.</span></li>
   </ol>
 </div></section>
 <section class="sectie"><div class="wrap"><div class="feature">
@@ -377,7 +368,7 @@ def werkwijze():
 </div></div></section>
 """ + prijsblok()
     voeg_toe("werkwijze/", "Werkwijze: van foto tot lege ruimte | Laaiop",
-             "Zo werkt een ontruiming bij Laaiop: foto sturen, prijsindicatie, offerte op locatie, wij laden op en laten alles proper achter. Correct gesorteerd en afgevoerd.",
+             "Zo werkt een ontruiming bij Laaiop: foto sturen, voorlopige offerte, bevestiging na ons bezoek, wij laden op en laten alles proper achter. Correct gesorteerd en afgevoerd.",
              body, actief="/werkwijze/", schema=[kruimel_schema([("Home", "/"), ("Werkwijze", None)], "werkwijze/")])
 
 
@@ -402,11 +393,11 @@ def realisaties():
 def over_ons():
     feiten = [("Naam", "Laaiop"), ("Wat", "Opruim- en ontruimingsdienst, ophalen en leveren"), ("Werkgebied", "Provincie Antwerpen"),
               ("Sinds", "{{OPRICHTING}}"), ("Zaakvoerder", "{{ZAAKVOERDER}}"), ("Btw-nummer", "{{BTW}}"), ("Contact", SITE["email"])]
-    body = f"""<section class="paginahero paginahero--donker"><div class="wrap paginahero__in paginahero__in--met-beeld"><div class="paginahero__tekst">
+    body = f"""<section class="paginahero paginahero--donker"><div class="wrap paginahero__in"><div class="paginahero__tekst">
   {kruimel([("Home", "/"), ("Over ons", None)])}
   <h1>De handige buurman die altijd helpt</h1>
-  <p class="lead">Laaiop is een laadploeg uit de provincie Antwerpen. We maken leeg wat leeg moet, brengen wat moet komen en laten alles proper achter. Op tijd, met een eerlijke prijs vooraf en een goede babbel erbij.</p>
-</div>{foto("ploeg-camionette", "Lachende chauffeur en collega in de cabine van een witte camionette", "Vervang deze foto door een echte foto van de Laaiop-ploeg bij de camionette.", "foto--hero")}</div></section>
+  <p class="lead">Laaiop is een laadploeg uit de provincie Antwerpen. We maken leeg wat leeg moet, brengen wat moet komen en laten alles proper achter. Op tijd, met een duidelijke offerte vooraf en een goede babbel erbij.</p>
+</div></div></section>
 <section class="sectie"><div class="wrap"><div class="twee twee--brede-links">
   <div class="artikel">
     <span class="eyebrow">Ons verhaal</span>
@@ -421,14 +412,14 @@ def over_ons():
 <section class="sectie sectie--mist"><div class="wrap">
   <div class="kop"><span class="eyebrow">Waar we voor staan</span><h2>Vier waarden, elke opdracht opnieuw</h2></div>
   <div class="factoren">
-    <div class="factor">{icoon("check")}<h3>Betrouwbaar</h3><p>We doen wat we zeggen. Prijs vooraf, afspraak is afspraak, verzekerd en nooit sluikstorten.</p></div>
+    <div class="factor">{icoon("check")}<h3>Betrouwbaar</h3><p>We doen wat we zeggen. Offerte vooraf, afspraak is afspraak, verzekerd en nooit sluikstorten.</p></div>
     <div class="factor">{icoon("hart")}<h3>Menselijk</h3><p>Respect voor mensen en hun spullen. Discreet bij een overlijden, op het tempo van de klant.</p></div>
-    <div class="factor">{icoon("klok")}<h3>Vlot</h3><p>Een prijsindicatie op basis van foto's, snel ter plaatse en alles in een keer.</p></div>
+    <div class="factor">{icoon("klok")}<h3>Vlot</h3><p>Een voorlopige offerte op basis van foto's, snel ter plaatse en alles in een keer.</p></div>
     <div class="factor">{icoon("kringloop")}<h3>Proper en verantwoord</h3><p>Netjes opgeleverd, correct gesorteerd en een tweede leven voor wat bruikbaar is.</p></div>
   </div>
 </div></section>""" + prijsblok()
     voeg_toe("over-ons/", "Over Laaiop, je laadploeg uit de provincie Antwerpen",
-             "Laaiop is een opruim- en ontruimingsdienst uit de provincie Antwerpen. Prijs vooraf, netjes opgeleverd. Leer de ploeg kennen.",
+             "Laaiop is een opruim- en ontruimingsdienst uit de provincie Antwerpen. Offerte vooraf, netjes opgeleverd. Leer de ploeg kennen.",
              body, actief="/over-ons/", schema=[kruimel_schema([("Home", "/"), ("Over ons", None)], "over-ons/")])
 
 
@@ -466,7 +457,7 @@ def professionals():
 <section class="sectie sectie--mist"><div class="wrap">
   <div class="kop"><span class="eyebrow">Voor wie</span><h2>Wie werkt met Laaiop?</h2></div>
   <div class="factoren factoren--compact">{doelgroepen}</div>
-</div></section>""" + prijsblok("Vraag een offerte op maat", "Beschrijf het pand en geef aan wanneer het leeg moet zijn. U krijgt een offerte op maat na een plaatsbezoek, en een vast aanspreekpunt.", "kantoor", True, "offerte")
+</div></section>""" + prijsblok("Vraag een offerte op maat", "Beschrijf het pand en geef aan wanneer het leeg moet zijn. U krijgt een voorlopige offerte, die we na een plaatsbezoek bevestigen, en een vast aanspreekpunt.", "kantoor", True, "offerte")
     voeg_toe("voor-professionals/", "Ontruimingen voor notarissen, makelaars en syndici | Laaiop",
              "Het vaste aanspreekpunt voor ontruimingen in de provincie Antwerpen: voor notarissen, makelaars, syndici en bedrijven. Offerte vooraf, foto's als bewijs.",
              body, schema=[kruimel_schema([("Home", "/"), ("Voor professionals", None)], "voor-professionals/")], formeel=True, ctx="offerte")
@@ -486,8 +477,8 @@ def werkgebied():
 </div></section>
 <section class="sectie sectie--mist"><div class="wrap wrap--smal"><div class="artikel">
   <h2>Parkeren en toegang</h2>
-  <p>In het centrum van Antwerpen, Mechelen en Lier is parkeren voor de deur niet altijd vanzelfsprekend. Laaiop zegt je vooraf of er een tijdelijk parkeerverbod nodig is. Dat vraag je enkele dagen op voorhand aan bij de stad of gemeente.</p>
-  <p>Voor appartementen zonder lift of met een smalle trap zetten we een liftwagen in. Ook dat staat in de prijs die je vooraf krijgt.</p>
+  <p>Op de dag zelf heeft onze camionette een plek nodig voor de deur of vlak in de buurt. Voorzie daarvoor voldoende plaats, bijvoorbeeld je oprit of een vrije plek in de straat. Borden of een parkeerverbod via de gemeente zijn niet nodig. Is parkeren in je straat lastig, zoals in het centrum van Antwerpen, Mechelen of Lier? Zeg het ons vooraf, dan zoeken we samen een oplossing.</p>
+  <p>Voor appartementen zonder lift of met een smalle trap zetten we een liftwagen in. Ook dat staat in de offerte die je vooraf krijgt.</p>
 </div></div></section>""" + prijsblok()
     voeg_toe("werkgebied/", "Werkgebied: ontruiming in de provincie Antwerpen | Laaiop",
              "Laaiop werkt in de hele provincie Antwerpen: Antwerpen, Mechelen, Lier, Turnhout, Geel, Mol, Herentals, Brasschaat, Schoten, Mortsel, Boom, Kontich.",
@@ -519,7 +510,7 @@ def richtprijs():
     body = f"""<section class="paginahero paginahero--compact"><div class="wrap paginahero__in"><div class="paginahero__tekst">
   {kruimel([("Home", "/"), ("Prijs aanvragen en contact", None)])}
   <h1>Contact en prijs aanvragen</h1>
-  <p class="lead">Laat je gegevens achter, kies waarmee we kunnen helpen en voeg een paar duidelijke foto's toe. Binnen {ph("{{TERMIJN}}")} krijg je een prijsindicatie. De definitieve offerte maken we op locatie.</p>
+  <p class="lead">Laat je gegevens achter, kies waarmee we kunnen helpen en voeg een paar duidelijke foto's toe. We proberen je binnen {ph("{{TERMIJN}}")} te antwoorden met een voorlopige offerte. Die bevestigen we nadat we langs zijn geweest.</p>
 </div></div></section>
 <section class="sectie sectie--formulier" id="formulier"><div class="wrap"><div class="twee twee--brede-links">
   {form}
@@ -531,15 +522,14 @@ def richtprijs():
       <li><strong>Telefoon</strong><span>{tel_tekst()}</span></li>
       <li><strong>WhatsApp</strong><span>{tel_tekst()}</span></li>
       <li><strong>E-mail</strong><span><a href="mailto:{SITE["email"]}">{SITE["email"]}</a></span></li>
-      <li><strong>Adres</strong><span>{ph("{{ADRES}}")}</span></li>
       <li><strong>Btw</strong><span>{ph("{{BTW}}")}</span></li>
       <li><strong>Werkgebied</strong><span>Provincie Antwerpen</span></li>
     </ul></div>
-    <div class="stapel"><h3>Wat gebeurt er na je aanvraag?</h3><ul class="vinkjes"><li>We bekijken je foto's</li><li>Binnen {ph("{{TERMIJN}}")} krijg je een prijsindicatie</li><li>We maken de offerte op locatie</li><li>Je kiest een dag, wij laden op</li></ul></div>
+    <div class="stapel"><h3>Wat gebeurt er na je aanvraag?</h3><ul class="vinkjes"><li>We bekijken je foto's</li><li>We proberen je binnen {ph("{{TERMIJN}}")} te antwoorden met een voorlopige offerte</li><li>We komen langs en bevestigen de offerte</li><li>Je kiest een dag, wij laden op</li></ul></div>
   </div>
 </div></div></section>"""
     voeg_toe("richtprijs/", "Prijs aanvragen | Laaiop, opruimdienst provincie Antwerpen",
-             "Vraag in een minuut een prijs aan voor je ontruiming, grofvuil of levering. Voeg foto's toe en krijg een prijsindicatie, of stuur ze via WhatsApp.",
+             "Vraag in een minuut een prijs aan voor je ontruiming, grofvuil of levering. Voeg foto's toe en krijg een voorlopige offerte, of stuur ze via WhatsApp.",
              body, actief="/richtprijs/", schema=[kruimel_schema([("Home", "/"), ("Prijs aanvragen en contact", None)], "richtprijs/")], ctx="richtprijs")
 
 
@@ -547,10 +537,10 @@ def bedankt():
     body = f"""<section class="sectie"><div class="wrap wrap--smal"><div class="stapel stapel--groot" style="justify-items:start">
   <span class="bedankt-icoon">{icoon("check")}</span>
   <h1 style="font-size:var(--fs-h1)">Bedankt, we hebben je aanvraag ontvangen.</h1>
-  <p class="lead zacht">We bekijken je foto's en bellen je binnen {ph("{{TERMIJN}}")} met een prijsindicatie. Daarna spreken we af om te komen kijken voor de offerte. Wil je nog iets toevoegen? Stuur het via WhatsApp.</p>
+  <p class="lead zacht">We bekijken je foto's en proberen je binnen {ph("{{TERMIJN}}")} te antwoorden met een voorlopige offerte. Daarna spreken we af om langs te komen en de offerte te bevestigen. Wil je nog iets toevoegen? Stuur het via WhatsApp.</p>
   <div class="knoppen"><a class="knop knop--primair" href="{wa_link()}" data-track="klik_whatsapp" data-locatie="bedankt" target="_blank" rel="noopener">{icoon("chat")}Stuur extra foto's via WhatsApp</a><a class="knop knop--rand" href="/">Terug naar de homepagina</a></div>
 </div></div></section>"""
-    voeg_toe("bedankt/", "Bedankt voor je aanvraag | Laaiop", "Je aanvraag is goed ontvangen. Laaiop neemt snel contact met je op met een prijsindicatie.", body, noindex=True, ctx="bedankt")
+    voeg_toe("bedankt/", "Bedankt voor je aanvraag | Laaiop", "Je aanvraag is goed ontvangen. Laaiop neemt snel contact met je op met een voorlopige offerte.", body, noindex=True, ctx="bedankt")
 
 
 def juridisch(pad, titel, h1, secties):
@@ -565,7 +555,7 @@ def juridisch(pad, titel, h1, secties):
 
 def juridische_paginas():
     juridisch("privacybeleid/", "Privacybeleid", "Privacybeleid", [
-        ("Wie zijn wij?", "Laaiop, " + ph("{{ADRES}}") + ", btw " + ph("{{BTW}}") + ", e-mail " + SITE["email"] + ". Wij zijn verantwoordelijk voor de verwerking van je persoonsgegevens."),
+        ("Wie zijn wij?", "Laaiop, btw " + ph("{{BTW}}") + ", e-mail " + SITE["email"] + ". Wij zijn verantwoordelijk voor de verwerking van je persoonsgegevens."),
         ("Welke gegevens", "Naam, telefoonnummer, e-mailadres, gemeente, de foto's die je ons stuurt en je opmerkingen."),
         ("Waarom", "Om je een prijs te bezorgen, de opdracht uit te voeren en te factureren. De rechtsgrond is de uitvoering van een overeenkomst of het nemen van stappen op jouw verzoek."),
         ("Hoe lang", "Aanvragen zonder opdracht bewaren we maximaal twaalf maanden. Facturen bewaren we zo lang als de wet voorschrijft."),
@@ -602,23 +592,26 @@ def bouw_paginas(g):
     diensten_overzicht()
     for d in DIENSTEN:
         dienstpagina(d)
-    prijzen(); werkwijze(); realisaties(); over_ons(); professionals(); werkgebied(); faq_pagina(); richtprijs(); bedankt()
+    prijzen(); werkwijze()
+    if VOOR_NA_KLAAR:
+        realisaties()
+    over_ons(); professionals(); werkgebied(); faq_pagina(); richtprijs(); bedankt()
     juridische_paginas(); niet_gevonden()
 
 
 def llms_txt(g):
     _laad(g)
     regels = ["# Laaiop", "",
-              "> Laaiop is een opruim- en ontruimingsdienst uit de provincie Antwerpen (België). Laaiop maakt woningen, appartementen, garages, zolders, kelders, kantoren en winkelpanden leeg, haalt grofvuil, groenafval en bouwafval op, levert nieuwe meubels en toestellen (en neemt het oude mee) en reinigt of demonteert dampkappen. Klanten krijgen een prijsindicatie op basis van foto's; de definitieve offerte gebeurt altijd op locatie, na een plaatsbezoek. Alles wordt gesorteerd afgevoerd en bezemschoon opgeleverd.",
+              "> Laaiop is een opruim- en ontruimingsdienst uit de provincie Antwerpen (België). Laaiop maakt woningen, appartementen, garages, zolders, kelders, kantoren en winkelpanden leeg, haalt grofvuil, groenafval en bouwafval op, levert nieuwe meubels en toestellen (en neemt het oude mee) en reinigt of demonteert dampkappen. Laaiop toont geen vaste prijzen: klanten sturen foto's en krijgen (meestal binnen 24 uur) een voorlopige offerte, die na een bezoek ter plaatse bevestigd wordt. Alles wordt gesorteerd afgevoerd en bezemschoon opgeleverd.",
               "", "- Werkgebied: provincie Antwerpen (o.a. Antwerpen, Mechelen, Lier, Turnhout, Geel, Mol, Herentals, Brasschaat, Schoten, Mortsel, Boom, Kontich)",
               "- Taal: Nederlands (Vlaams)", "- Contact: " + SITE["email"], "- Belofte: Wij laden op. Jij ademt op.", "", "## Diensten", ""]
     for d in DIENSTEN:
         regels.append("- [%s](%s/%s/): %s" % (d["naam"], SITE["url"], d["slug"], d["meta"]))
     regels += ["", "## Belangrijke pagina's", "",
-               "- [Prijzen](%s/prijzen/): richtprijzen per opdracht en wat de prijs bepaalt" % SITE["url"],
+               "- [Prijs en offerte](%s/prijzen/): hoe je een prijs krijgt en wat de prijs bepaalt" % SITE["url"],
                "- [Werkwijze](%s/werkwijze/): van foto tot lege ruimte, en hoe afval verwerkt wordt" % SITE["url"],
                "- [Voor professionals](%s/voor-professionals/): notarissen, makelaars, syndici en bedrijven" % SITE["url"],
                "- [Werkgebied](%s/werkgebied/): alle gemeenten" % SITE["url"],
                "- [Veelgestelde vragen](%s/veelgestelde-vragen/)" % SITE["url"],
-               "- [Richtprijs aanvragen](%s/richtprijs/)" % SITE["url"], ""]
+               "- [Prijs aanvragen](%s/richtprijs/)" % SITE["url"], ""]
     return "\n".join(regels)

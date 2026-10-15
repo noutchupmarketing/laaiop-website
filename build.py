@@ -11,7 +11,7 @@ import json, os, re, shutil, sys, html, hashlib
 # Zet op True zodra er echte voor-en-na-foto's zijn: dan komt het blok terug op de home.
 VOOR_NA_KLAAR = False
 REVIEWS_KLAAR = False  # True zodra er echte Google-reviews en een score zijn: toont de reviewsectie en de score
-from content import SITE, PLACEHOLDERS, WERKGEBIED, DIENSTEN, FORM_DIENSTEN, SLUG_NAAR_FORM, FAQ_ALGEMEEN, PRIJS_KAART
+from content import SITE, PLACEHOLDERS, WERKGEBIED, DIENSTEN, FORM_DIENSTEN, SLUG_NAAR_FORM, FAQ_ALGEMEEN, INBEGREPEN
 
 MODE = sys.argv[1] if len(sys.argv) > 1 else "prod"
 OUT = "staging" if MODE == "staging" else "dist"
@@ -116,7 +116,8 @@ def voor_na(titel, caption):
             '</div><figcaption><strong>%s</strong> %s</figcaption></figure>') % (icoon("foto"), icoon("foto"), titel, caption)
 
 # ---------------------------------------------------------------- vaste blokken
-NAV = [("Diensten", "/diensten/"), ("Prijzen", "/prijzen/"), ("Werkwijze", "/werkwijze/"), ("Realisaties", "/realisaties/"), ("Over ons", "/over-ons/"), ("Contact", "/richtprijs/")]
+# Realisaties komt terug in het menu zodra VOOR_NA_KLAAR op True staat
+NAV = [("Diensten", "/diensten/"), ("Prijs en offerte", "/prijzen/"), ("Werkwijze", "/werkwijze/")] + ([("Realisaties", "/realisaties/")] if VOOR_NA_KLAAR else []) + [("Over ons", "/over-ons/"), ("Contact", "/richtprijs/")]
 DIENST_GROEPEN = [("Ontruimen", ["huis-leegmaken-na-overlijden", "inboedel-opruimen", "appartement-leegmaken", "garage-zolder-kelder-opruimen", "kantoor-winkelpand-leegmaken"]),
                   ("Ophalen", ["grofvuil-ophalen", "groenafval-ophalen", "bouwafval-ophalen"]),
                   ("Leveren en extra", ["meubels-toestellen-leveren", "dampkap-afbreken-reinigen"])]
@@ -150,8 +151,7 @@ def header(actief, ctx="standaard"):
     mob_diensten = "".join('<li><a href="/%s/">%s</a></li>' % (d["slug"], d["naam"]) for d in DIENSTEN)
     mob = (f'<li><details class="mobielmenu__groep"><summary>Diensten</summary><ul>{mob_diensten}<li><a href="/diensten/">Alle diensten</a></li></ul></details></li>'
            + "".join('<li><a href="%s">%s</a></li>' % (u, t) for t, u in NAV[1:] + [("Voor professionals", "/voor-professionals/"), ("Werkgebied", "/werkgebied/"), ("Veelgestelde vragen", "/veelgestelde-vragen/")]))
-    staging = '<div class="stagingbalk">Stagingversie voor Laaiop. Geel gemarkeerde velden vult de klant nog in.</div>' if SITE.get("noindex") else ""
-    return f"""{staging}<a class="skiplink" href="#inhoud">Naar de inhoud</a>
+    return f"""<a class="skiplink" href="#inhoud">Naar de inhoud</a>
 <header class="header">
   <div class="wrap header__in">
     <a class="header__logo" href="/" aria-label="Laaiop, naar de homepagina"><img src="/assets/img/logo-positief.webp" width="400" height="118" alt="Laaiop"></a>
@@ -197,12 +197,11 @@ def footer(formeel=False, ctx="standaard"):
         <li><a href="{tel_link()}" data-track="klik_telefoon" data-locatie="footer">{icoon("telefoon")}{tel_tekst()}</a></li>
         <li><a href="{wa_link()}" data-track="klik_whatsapp" data-locatie="footer" target="_blank" rel="noopener">{icoon("chat")}WhatsApp: stuur een foto</a></li>
         <li><a href="mailto:{SITE["email"]}">{icoon("document")}{SITE["email"]}</a></li>
-        <li>{icoon("pin")}<span>{ph("{{ADRES}}")}</span></li>
         <li>Btw {ph("{{BTW}}")}</li>
       </ul><a class="knop knop--primair knop--klein" href="{(CONTEXT[ctx]["cta"][1] if ctx in ("plaatsbezoek", "offerte") else "/richtprijs/")}">{(CONTEXT[ctx]["cta"][0] if ctx in ("plaatsbezoek", "offerte") else "Vraag je prijs aan")}</a></div>
       <details class="footer__groep" open><summary><h2>Diensten</h2></summary><ul>{diensten}</ul></details>
       <details class="footer__groep" open><summary><h2>Laaiop</h2></summary><ul>
-        <li><a href="/prijzen/">Prijzen</a></li><li><a href="/werkwijze/">Werkwijze</a></li><li><a href="/realisaties/">Realisaties</a></li>
+        <li><a href="/prijzen/">Prijs en offerte</a></li><li><a href="/werkwijze/">Werkwijze</a></li>{'<li><a href="/realisaties/">Realisaties</a></li>' if VOOR_NA_KLAAR else ""}
         <li><a href="/over-ons/">Over ons</a></li><li><a href="/voor-professionals/">Voor professionals</a></li><li><a href="/werkgebied/">Werkgebied</a></li>
         <li><a href="/veelgestelde-vragen/">Veelgestelde vragen</a></li></ul></details>
     </div>
@@ -223,7 +222,7 @@ def vertrouwen(donker=True):
     google = f'<li>{icoon("ster")}<span><strong>{ph("{{SCORE}}")}</strong> op Google</span></li>' if REVIEWS_KLAAR else ""
     return f"""<ul class="vertrouwen">
   {google}
-  <li>{icoon("euro")}<span>Prijs vooraf afgesproken</span></li>
+  <li>{icoon("euro")}<span>Offerte vooraf bevestigd</span></li>
   <li>{icoon("schild")}<span>Verzekerd</span></li>
   <li>{icoon("bezem")}<span>Proper achtergelaten</span></li>
 </ul>"""
@@ -239,7 +238,7 @@ def datalist():
     return '<datalist id="gemeenten">' + "".join('<option value="%s"></option>' % g for g in gem) + "</datalist>"
 
 def upload_veld(id_):
-    return f"""<div class="veld"><label for="{id_}">Foto's <span class="hint">(niet verplicht, duidelijke foto's geven een betere prijsindicatie)</span></label>
+    return f"""<div class="veld"><label for="{id_}">Foto's <span class="hint">(niet verplicht, met duidelijke foto's krijg je een betere offerte)</span></label>
   <div class="upload">{icoon("camera")}<strong><span class="alleen-mobiel">Kies foto's of neem er een</span><span class="alleen-desktop">Kies of sleep foto's hierheen</span></strong><span data-teller>Tot 10 foto's</span>
   <input id="{id_}" name="fotos" type="file" accept="image/*" multiple></div>
   <div class="voorbeelden" aria-live="polite"></div>
@@ -279,7 +278,7 @@ def contactformulier(id_="kort", vooraf=None):
   </div>
 </form>"""
 
-def prijsblok(titel="Wat kost het?", tekst="Stuur ons een paar duidelijke foto's. Je krijgt snel een prijsindicatie. De definitieve offerte maken we op locatie, zonder verrassingen achteraf.", vooraf=None, u=False, variant="standaard"):
+def prijsblok(titel="Wat kost het?", tekst="Stuur ons een paar duidelijke foto's. Je krijgt snel een voorlopige offerte. Die bevestigen we nadat we langs zijn geweest, zonder verrassingen achteraf.", vooraf=None, u=False, variant="standaard"):
     bel = "Bel ons" if u else "Bel"
     return f"""<section class="sectie" id="prijs-aanvragen" aria-labelledby="prijsblok-titel">
   <div class="wrap"><div class="prijsblok donker">
@@ -288,9 +287,9 @@ def prijsblok(titel="Wat kost het?", tekst="Stuur ons een paar duidelijke foto's
       <h2 id="prijsblok-titel">{titel}</h2>
       <p>{tekst}</p>
       <ul class="vinkjes">
-        <li><span>Prijsindicatie binnen {ph("{{TERMIJN}}")}</span></li>
+        <li><span>Voorlopige offerte, meestal binnen {ph("{{TERMIJN}}")}</span></li>
         <li><span>Laden, transport, afvoer en opkuis inbegrepen</span></li>
-        <li><span>Definitieve offerte op locatie</span></li>
+        <li><span>Bevestigd nadat we langs zijn geweest</span></li>
       </ul>
       <div class="prijsblok__contact">
         <p class="of">Liever meteen contact?</p>
@@ -304,23 +303,23 @@ def prijsblok(titel="Wat kost het?", tekst="Stuur ons een paar duidelijke foto's
 def stappen(u=False, soort="standaard"):
     if soort == "levering":
         s = [("Stuur je vraag", "Wat moet er geleverd worden, en waar halen we het op?"),
-             ("Je krijgt een prijsindicatie", "Binnen {{TERMIJN}}, ophalen en leveren inbegrepen."),
-             ("Prijs ter plaatse bevestigd", "De definitieve prijs bevestigen we op locatie."),
+             ("Je krijgt een voorlopige offerte", "Meestal binnen {{TERMIJN}}, ophalen en leveren inbegrepen."),
+             ("Ter plaatse bevestigd", "De offerte bevestigen we wanneer we langskomen."),
              ("Geleverd, het oude gaat mee", "Op zijn plaats gezet, het oude correct afgevoerd.")]
     elif soort == "dampkap":
         s = [("Stuur duidelijke foto's", "Van de dampkap, met het merk erbij."),
-             ("Je krijgt een prijsindicatie", "Binnen {{TERMIJN}}, voor reinigen of afbreken."),
-             ("Offerte op locatie", "We bekijken de kap en bevestigen de prijs."),
+             ("Je krijgt een voorlopige offerte", "Meestal binnen {{TERMIJN}}, voor reinigen of afbreken."),
+             ("Bevestigd na ons bezoek", "We bekijken de kap en bevestigen de offerte."),
              ("Gereinigd of gedemonteerd", "Je keuken laten we proper achter.")]
     elif u:
         s = [("Neem contact op", "Bel ons of stuur duidelijke foto's."),
-             ("U krijgt een prijsindicatie", "Binnen {{TERMIJN}}, op basis van uw foto's."),
-             ("Offerte op locatie", "Wij komen langs op een moment dat voor u past."),
+             ("U krijgt een voorlopige offerte", "Meestal binnen {{TERMIJN}}, op basis van uw foto's."),
+             ("Bevestigd na ons bezoek", "Wij komen langs op een moment dat voor u past."),
              ("Wij maken leeg", "Persoonlijke spullen apart, netjes opgeleverd.")]
     else:
         s = [("Stuur duidelijke foto's", "Via WhatsApp of het formulier, met gemeente en verdieping."),
-             ("Je krijgt een prijsindicatie", "Binnen {{TERMIJN}}, op basis van je foto's."),
-             ("Offerte op locatie", "We komen kijken en maken de definitieve offerte."),
+             ("Je krijgt een voorlopige offerte", "Meestal binnen {{TERMIJN}}, op basis van je foto's."),
+             ("Bevestigd na ons bezoek", "We komen langs en bevestigen de offerte."),
              ("Wij laden op", "Op de afgesproken dag. Leeg en geveegd achtergelaten.")]
     return '<ol class="stappen">' + "".join('<li class="stap"><div><h3>%s</h3><p>%s</p></div></li>' % (t, ph(p)) for t, p in s) + "</ol>"
 
@@ -365,13 +364,12 @@ def org_schema():
         "@type": "LocalBusiness", "@id": SITE["url"] + "/#organisatie", "name": "Laaiop", "url": SITE["url"] + "/",
         "logo": SITE["url"] + "/assets/img/icon-512.png", "image": SITE["url"] + "/assets/img/og-laaiop.jpg",
         "slogan": "Wij laden op. Jij ademt op.",
-        "description": "Opruim- en ontruimingsdienst in de provincie Antwerpen: woningen, appartementen, garages, zolders, kantoren en winkelpanden leegmaken, groen- en bouwafval ophalen en meubels en toestellen leveren. Prijs vooraf afgesproken, leeg en geveegd opgeleverd.",
-        "email": SITE["email"], "priceRange": "€€", "currenciesAccepted": "EUR", "knowsLanguage": "nl-BE",
+        "description": "Opruim- en ontruimingsdienst in de provincie Antwerpen: woningen, appartementen, garages, zolders, kantoren en winkelpanden leegmaken, groen- en bouwafval ophalen en meubels en toestellen leveren. Offerte vooraf bevestigd, leeg en geveegd opgeleverd.",
+        "email": SITE["email"], "currenciesAccepted": "EUR", "knowsLanguage": "nl-BE",
         "areaServed": [{"@type": "AdministrativeArea", "name": "Provincie Antwerpen"}] + [{"@type": "City", "name": g} for g in ["Antwerpen", "Mechelen", "Lier", "Turnhout", "Geel", "Mol", "Herentals", "Brasschaat", "Schoten", "Mortsel", "Boom", "Kontich"]],
         "hasOfferCatalog": {"@type": "OfferCatalog", "name": "Diensten van Laaiop", "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": d["naam"], "url": SITE["url"] + "/" + d["slug"] + "/"}} for d in DIENSTEN]},
     }
     if SITE.get("telefoon_link"): o["telephone"] = SITE["telefoon_link"]
-    if PLACEHOLDERS.get("ADRES"): o["address"] = {"@type": "PostalAddress", "streetAddress": PLACEHOLDERS["ADRES"], "addressCountry": "BE"}
     if PLACEHOLDERS.get("BTW"): o["vatID"] = PLACEHOLDERS["BTW"]
     if REVIEWS_KLAAR and PLACEHOLDERS.get("SCORE") and PLACEHOLDERS.get("AANTAL_REVIEWS"):
         o["aggregateRating"] = {"@type": "AggregateRating", "ratingValue": PLACEHOLDERS["SCORE"].replace(",", "."), "reviewCount": PLACEHOLDERS["AANTAL_REVIEWS"]}

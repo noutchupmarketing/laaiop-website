@@ -1043,3 +1043,7 @@ html.intro:not(.intro--klaar) :is(.hero__tekst > *, .paginahero__tekst > *, .hel
 .beweeg .bedankt-icoon { animation: plop .7s var(--zacht) calc(var(--intro) + .2s) both; }
 .confetti { position: fixed; inset: 0; z-index: 95; pointer-events: none; }
 .confetti i { position: fixed; border-radius: 3px; }
+
+/* Dienstpagina: "Zo krijg je je prijs" (stappen in plaats van bedragen) */
+.dienstprijs dd { font-size: 1.2rem; }
+.dienstprijs dt { font-size: .85rem; }
