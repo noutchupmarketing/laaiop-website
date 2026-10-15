@@ -1,0 +1,7 @@
+# Wordt door Vercel zelf gebouwd met: python3 build.py
+dist/
+staging/
+__pycache__/
+.vercel/
+.env*
+.DS_Store
