@@ -214,7 +214,11 @@
       track("formulier_verzonden", { formulier: form.getAttribute("data-richtprijs") });
       var naarBedankt = function () { window.location.href = form.getAttribute("data-bedankt"); };
       if (!CFG.formEndpoint) { setTimeout(naarBedankt, 400); return; }
-      fetch(CFG.formEndpoint, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } })
+      verkleinFotos(new FormData(form))
+        .then(function (data) {
+          data.append("pagina", location.pathname);
+          return fetch(CFG.formEndpoint, { method: "POST", body: data, headers: { Accept: "application/json" } });
+        })
         .then(function (r) { if (!r.ok) throw new Error("status " + r.status); naarBedankt(); })
         .catch(function () {
           if (knop) { knop.disabled = false; knop.textContent = knop.dataset.tekst; }
@@ -226,6 +230,39 @@
 
     if (stappen.length) toonStap(0);
   });
+
+  /* Foto's verkleinen tot max 1600px JPEG, zodat 10 foto's samen onder de uploadlimiet (4,5 MB) blijven */
+  function verkleinFoto(bestand) {
+    return new Promise(function (ok) {
+      if (!window.URL || !document.createElement("canvas").toBlob) return ok(bestand);
+      var img = new Image(), url = URL.createObjectURL(bestand);
+      img.onload = function () {
+        var max = 1600, s = Math.min(1, max / Math.max(img.naturalWidth, img.naturalHeight));
+        var c = document.createElement("canvas");
+        c.width = Math.round(img.naturalWidth * s); c.height = Math.round(img.naturalHeight * s);
+        c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
+        URL.revokeObjectURL(url);
+        c.toBlob(function (blob) { ok(blob ? { blob: blob, naam: bestand.name.replace(/\.[^.]+$/, "") + ".jpg" } : bestand); }, "image/jpeg", 0.72);
+      };
+      img.onerror = function () { URL.revokeObjectURL(url); ok(null); };
+      img.src = url;
+    });
+  }
+  function verkleinFotos(data) {
+    var fotos = data.getAll("fotos").filter(function (f) { return f && f.size && /^image\//.test(f.type); }).slice(0, 10);
+    data.delete("fotos");
+    return Promise.all(fotos.map(verkleinFoto)).then(function (klaar) {
+      var totaal = 0;
+      klaar.forEach(function (f) {
+        if (!f) return;
+        var blob = f.blob || f, naam = f.naam || f.name;
+        if (totaal + blob.size > 4000000) return; // te groot: rest laten vallen in plaats van alles te laten mislukken
+        totaal += blob.size;
+        data.append("fotos", blob, naam);
+      });
+      return data;
+    });
+  }
 
   /* Dienst vooraf aanvinken via ?dienst= (bv. vanuit een dienstpagina) */
   try {

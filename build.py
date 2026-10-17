@@ -252,6 +252,7 @@ def contactformulier(id_="kort", vooraf=None):
                      % (v, " checked" if v == vooraf else "", icoon(FORM_ICOON[v]), l) for v, l in FORM_DIENSTEN + [("anders", "Iets anders")])
     return f"""<form class="formulier formulier--stappen" data-richtprijs="contact" data-bedankt="/bedankt/" novalidate enctype="multipart/form-data">
   <input type="hidden" name="formulier" value="contact">
+  <div hidden aria-hidden="true"><label>Laat leeg <input name="website" tabindex="-1" autocomplete="off"></label></div>
   <div class="formulier__kop">
     <div class="voortgang" aria-hidden="true"><span data-voortgang></span></div>
     <p class="formulier__status" data-stap-tekst aria-live="polite">Stap 1 van 3</p>
