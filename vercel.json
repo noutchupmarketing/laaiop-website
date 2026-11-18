@@ -5,6 +5,13 @@
   "installCommand": "",
   "cleanUrls": true,
   "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/dampkap-afbreken-reinigen/",
+      "destination": "/dampkap-reinigen/",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/assets/(.*)",

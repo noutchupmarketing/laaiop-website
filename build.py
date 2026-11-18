@@ -120,7 +120,7 @@ def voor_na(titel, caption):
 NAV = [("Diensten", "/diensten/"), ("Prijs en offerte", "/prijzen/"), ("Werkwijze", "/werkwijze/")] + ([("Realisaties", "/realisaties/")] if VOOR_NA_KLAAR else []) + [("Over ons", "/over-ons/"), ("Contact", "/richtprijs/")]
 DIENST_GROEPEN = [("Ontruimen", ["huis-leegmaken-na-overlijden", "inboedel-opruimen", "appartement-leegmaken", "garage-zolder-kelder-opruimen", "kantoor-winkelpand-leegmaken"]),
                   ("Ophalen", ["grofvuil-ophalen", "groenafval-ophalen", "bouwafval-ophalen"]),
-                  ("Leveren en extra", ["meubels-toestellen-leveren", "dampkap-afbreken-reinigen"])]
+                  ("Leveren en extra", ["meubels-toestellen-leveren", "dampkap-reinigen"])]
 
 # Context per paginatype: header-CTA en de twee knoppen van de mobiele actiebalk
 CONTEXT = {
@@ -308,9 +308,9 @@ def stappen(u=False, soort="standaard"):
              ("Geleverd, het oude gaat mee", "Op zijn plaats gezet, het oude correct afgevoerd.")]
     elif soort == "dampkap":
         s = [("Stuur duidelijke foto's", "Van de dampkap, met het merk erbij."),
-             ("Je krijgt een voorlopige offerte", "Meestal binnen {{TERMIJN}}, voor reinigen of afbreken."),
+             ("Je krijgt een voorlopige offerte", "Meestal binnen {{TERMIJN}}, voor het reinigen."),
              ("Bevestigd na ons bezoek", "We bekijken de kap en bevestigen de offerte."),
-             ("Gereinigd of gedemonteerd", "Je keuken laten we proper achter.")]
+             ("Gereinigd", "Je keuken laten we proper achter.")]
     elif u:
         s = [("Neem contact op", "Bel ons of stuur duidelijke foto's."),
              ("U krijgt een voorlopige offerte", "Meestal binnen {{TERMIJN}}, op basis van uw foto's."),
@@ -592,6 +592,7 @@ from pages import llms_txt
 with open(os.path.join(OUTDIR, "llms.txt"), "w") as f:
     f.write("Binnenkort meer\n" if BINNENKORT else llms_txt(globals()))
 vercel = {"cleanUrls": True, "trailingSlash": True,
+          "redirects": [{"source": "/dampkap-afbreken-reinigen/", "destination": "/dampkap-reinigen/", "permanent": True}],
           "headers": [{"source": "/assets/(.*)", "headers": [{"key": "Cache-Control", "value": "public, max-age=31536000, immutable"}]},
                       {"source": "/(.*)", "headers": [{"key": "X-Content-Type-Options", "value": "nosniff"}, {"key": "Referrer-Policy", "value": "strict-origin-when-cross-origin"}, {"key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()"}]}]}
 if SITE.get("noindex"):

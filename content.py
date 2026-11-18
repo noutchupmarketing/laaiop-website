@@ -384,20 +384,20 @@ DIENSTEN = [
         "zoekwoorden": ["meubels laten leveren", "koelkast laten leveren", "transport zetel", "oude koelkast meenemen"],
     },
     {
-        "slug": "dampkap-afbreken-reinigen",
-        "naam": "Dampkap afbreken of reinigen",
+        "slug": "dampkap-reinigen",
+        "naam": "Dampkap reinigen",
         "kort": "Dampkappen",
-        "tegel": "We demonteren je vette dampkap of ontvetten ze grondig. Een dienst die andere opruimers niet bieden.",
+        "tegel": "We ontvetten je vette dampkap grondig. Een dienst die andere opruimers niet bieden.",
         "icoon": "dampkap",
         "toon": "je",
-        "seo_titel": "Dampkap laten reinigen of afbreken | Laaiop",
-        "meta": "Dampkap laten ontvetten of demonteren en afvoeren? Laaiop reinigt filters, kap en ventilator, of breekt de oude dampkap af. Offerte vooraf.",
-        "h1": "Dampkap laten reinigen of afbreken",
-        "intro": "Een dampkap die jaren vet heeft opgevangen, zuigt slecht en ruikt. Laaiop ontvet je dampkap grondig. Wil je de oude dampkap weg, bijvoorbeeld voor een nieuwe keuken? Dan demonteren we ze en voeren we ze af. Geen enkele andere opruimer in de regio biedt dit aan.",
+        "seo_titel": "Dampkap laten reinigen en ontvetten | Laaiop",
+        "meta": "Dampkap laten ontvetten? Laaiop reinigt de vetfilters, de binnenkant van de kap en de ventilator, en laat je keuken proper achter. Offerte vooraf.",
+        "h1": "Dampkap laten reinigen",
+        "intro": "Een dampkap die jaren vet heeft opgevangen, zuigt slecht en ruikt. Laaiop ontvet je dampkap grondig: de filters, de binnenkant van de kap en de ventilator. Geen enkele andere opruimer in de regio biedt dit aan.",
         "cta": "Vraag je prijs aan",
         "kort_feiten": [
             ("Reinigen", "Filters, binnenkant en ventilator ontvet"),
-            ("Afbreken", "Oude dampkap gedemonteerd en afgevoerd"),
+            ("Resultaat", "Een dampkap die weer goed zuigt en niet meer ruikt"),
             ("Voor wie", "Particulieren, verhuurders en kleine zaken"),
             ("Offerte", "Voorlopig via foto's of video's, ter plaatse bevestigd"),
             ("Waar", "Heel de provincie Antwerpen"),
@@ -405,20 +405,18 @@ DIENSTEN = [
         "wat": [
             "Vetfilters reinigen of vervangen",
             "Binnenkant van de kap en de ventilator ontvetten",
-            "Oude dampkap demonteren, bijvoorbeeld voor een nieuwe keuken",
-            "Afvoer van de oude kap, metaal naar de schroothandel",
             "Keuken en werkblad na afloop proper achtergelaten",
             "Te combineren met een volledige keukenontruiming",
         ],
-        "foto": ('dampkap', 'Inox dampkap boven een fornuis in een witte keuken', 'Een dampkap die jaren vet opving, zuigt slecht. Laaiop ontvet je dampkap of haalt de oude weg voor je nieuwe keuken.'),
+        "foto": ('dampkap', 'Inox dampkap boven een fornuis in een witte keuken', 'Een dampkap die jaren vet opving, zuigt slecht. Laaiop ontvet je dampkap grondig, zodat ze weer goed zuigt.'),
 
         "faq": [
             ("Hoe vaak moet een dampkap gereinigd worden?", "De vetfilters reinig je best om de paar maanden. De kap en de ventilator reinig je om de één à twee jaar, afhankelijk van hoeveel je kookt. Een vette kap zuigt slechter en is een brandrisico."),
             ("Wat houdt een reinigingsbeurt in?", "We ontvetten de filters, de binnenkant van de kap en de ventilator. Je keuken laten we proper achter."),
-            ("Kunnen jullie ook een nieuwe dampkap plaatsen?", "Nee, plaatsen en aansluiten laten we aan de keukenplaatser of een elektricien. Wij halen de oude weg, zodat zij meteen kunnen beginnen."),
+            ("Kunnen jullie een dampkap afbreken of plaatsen?", "Nee. Wij reinigen alleen dampkappen. Voor het afbreken, plaatsen of aansluiten van een dampkap ga je best naar een keukenplaatser of een elektricien."),
             ("Doen jullie dit ook voor horeca?", "Voor kleine zaken wel. Voor grote horecakeukens met afzuigkanalen is een gespecialiseerd bedrijf nodig. We verwijzen je graag door."),
         ],
-        "zoekwoorden": ["dampkap reinigen", "dampkap afbreken", "dampkap ontvetten"],
+        "zoekwoorden": ["dampkap reinigen", "dampkap ontvetten", "dampkap laten reinigen"],
     },
 ]
 
@@ -438,7 +436,7 @@ SLUG_NAAR_FORM = {
     "huis-leegmaken-na-overlijden": "woning", "inboedel-opruimen": "inboedel", "appartement-leegmaken": "woning",
     "garage-zolder-kelder-opruimen": "garage", "kantoor-winkelpand-leegmaken": "kantoor", "grofvuil-ophalen": "losse-stukken",
     "groenafval-ophalen": "groenafval", "bouwafval-ophalen": "bouwafval", "meubels-toestellen-leveren": "levering",
-    "dampkap-afbreken-reinigen": "dampkap",
+    "dampkap-reinigen": "dampkap",
 }
 
 # Algemene veelgestelde vragen (home en FAQ-pagina)
@@ -467,5 +465,5 @@ INBEGREPEN = {
     "groenafval-ophalen": "Laden en afvoer inbegrepen",
     "bouwafval-ophalen": "Gesorteerd afval is goedkoper",
     "meubels-toestellen-leveren": "Inclusief het meenemen van je oude toestel of meubel",
-    "dampkap-afbreken-reinigen": "Reinigen of afbreken",
+    "dampkap-reinigen": "Reinigen en ontvetten",
 }

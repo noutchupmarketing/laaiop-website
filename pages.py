@@ -221,7 +221,7 @@ def dienstpagina(d):
     {prijs_kaart_dienst(d, u)}
   </div>
 </div></section>"""
-    soort = "levering" if d["slug"] == "meubels-toestellen-leveren" else ("dampkap" if d["slug"] == "dampkap-afbreken-reinigen" else "standaard")
+    soort = "levering" if d["slug"] == "meubels-toestellen-leveren" else ("dampkap" if d["slug"] == "dampkap-reinigen" else "standaard")
     stapkop = 'Zo verloopt de ontruiming' if zakelijk else ('Zo gaat het, op uw tempo' if u else 'Zo gaat het')
     watblok = f"""<section class="sectie sectie--mist"><div class="wrap">
   <div class="twee" style="align-items:start">
@@ -241,9 +241,9 @@ def dienstpagina(d):
         "kantoor-winkelpand-leegmaken": ["bouwafval-ophalen", "grofvuil-ophalen", "meubels-toestellen-leveren"],
         "grofvuil-ophalen": ["garage-zolder-kelder-opruimen", "meubels-toestellen-leveren", "inboedel-opruimen"],
         "groenafval-ophalen": ["bouwafval-ophalen", "garage-zolder-kelder-opruimen", "grofvuil-ophalen"],
-        "bouwafval-ophalen": ["groenafval-ophalen", "dampkap-afbreken-reinigen", "grofvuil-ophalen"],
-        "meubels-toestellen-leveren": ["grofvuil-ophalen", "inboedel-opruimen", "dampkap-afbreken-reinigen"],
-        "dampkap-afbreken-reinigen": ["bouwafval-ophalen", "meubels-toestellen-leveren", "grofvuil-ophalen"],
+        "bouwafval-ophalen": ["groenafval-ophalen", "dampkap-reinigen", "grofvuil-ophalen"],
+        "meubels-toestellen-leveren": ["grofvuil-ophalen", "inboedel-opruimen", "dampkap-reinigen"],
+        "dampkap-reinigen": ["bouwafval-ophalen", "meubels-toestellen-leveren", "grofvuil-ophalen"],
     }[d["slug"]]
     gerel = "".join('<a href="/%s/">%s%s</a>' % (s, icoon(D[s]["icoon"]), D[s]["naam"]) for s in verwant)
     gebied = f"""<section class="sectie sectie--compact"><div class="wrap">
@@ -268,7 +268,7 @@ def dienstpagina(d):
 def diensten_overzicht():
     groepen = [("Ontruimen", ["huis-leegmaken-na-overlijden", "inboedel-opruimen", "appartement-leegmaken", "garage-zolder-kelder-opruimen", "kantoor-winkelpand-leegmaken"]),
                ("Ophalen", ["grofvuil-ophalen", "groenafval-ophalen", "bouwafval-ophalen"]),
-               ("Leveren en extra", ["meubels-toestellen-leveren", "dampkap-afbreken-reinigen"])]
+               ("Leveren en extra", ["meubels-toestellen-leveren", "dampkap-reinigen"])]
     blokken = "".join(f'<div class="stapel" style="margin-bottom:48px"><h2 style="font-size:1.6rem">{t}</h2>{tegels([D[s] for s in slugs], kol=len(slugs))}</div>' for t, slugs in groepen)
     body = f"""<section class="paginahero"><div class="wrap paginahero__in"><div class="paginahero__tekst">
   {kruimel([("Home", "/"), ("Diensten", None)])}
@@ -597,7 +597,7 @@ def bouw_paginas(g):
 def llms_txt(g):
     _laad(g)
     regels = ["# Laaiop", "",
-              "> Laaiop is een opruim- en ontruimingsdienst uit de provincie Antwerpen (België). Laaiop maakt woningen, appartementen, garages, zolders, kelders, kantoren en winkelpanden leeg, haalt grofvuil, groenafval en bouwafval op, levert nieuwe meubels en toestellen (en neemt het oude mee) en reinigt of demonteert dampkappen. Laaiop toont geen vaste prijzen: klanten sturen foto's of video's en krijgen (meestal binnen 12 uur) een voorlopige offerte, die na een bezoek ter plaatse bevestigd wordt. Alles wordt gesorteerd afgevoerd en bezemschoon opgeleverd.",
+              "> Laaiop is een opruim- en ontruimingsdienst uit de provincie Antwerpen (België). Laaiop maakt woningen, appartementen, garages, zolders, kelders, kantoren en winkelpanden leeg, haalt grofvuil, groenafval en bouwafval op, levert nieuwe meubels en toestellen (en neemt het oude mee) en reinigt dampkappen. Laaiop toont geen vaste prijzen: klanten sturen foto's of video's en krijgen (meestal binnen 12 uur) een voorlopige offerte, die na een bezoek ter plaatse bevestigd wordt. Alles wordt gesorteerd afgevoerd en bezemschoon opgeleverd.",
               "", "- Werkgebied: provincie Antwerpen (o.a. Antwerpen, Mechelen, Lier, Turnhout, Geel, Mol, Herentals, Brasschaat, Schoten, Mortsel, Boom, Kontich)",
               "- Taal: Nederlands (Vlaams)", "- Contact: " + SITE["email"], "- Belofte: Wij laden op. Jij ademt op.", "", "## Diensten", ""]
     for d in DIENSTEN:
