@@ -31,7 +31,7 @@ PLACEHOLDERS = {
     "TELEFOON": "0471 79 55 15",                 # zichtbaar nummer, bv. "0470 12 34 56"
     "SCORE": None,                    # Google-score, bv. "4,9"
     "AANTAL_REVIEWS": None,           # bv. "34"
-    "TERMIJN": "24 uur",              # hoe snel we proberen te antwoorden met een voorlopige offerte
+    "TERMIJN": "12 uur",              # hoe snel we proberen te antwoorden met een voorlopige offerte
     "ZAAKVOERDER": "Keanu Bosmans",              # naam van het gezicht van Laaiop
     "OPRICHTING": "2026",               # jaar van oprichting
 }
@@ -63,7 +63,7 @@ DIENSTEN = [
         "cta": "Plan een gratis plaatsbezoek",
         "kort_feiten": [
             ("Wat", "Volledige woning leegmaken, sorteren en netjes opleveren"),
-            ("Offerte", "Voorlopig via foto's, bevestigd na een gratis plaatsbezoek"),
+            ("Offerte", "Voorlopig via foto's of video's, bevestigd na een gratis plaatsbezoek"),
             ("Aanwezig zijn", "Niet nodig. U krijgt foto's van de lege woning"),
             ("Persoonlijk", "Papieren, foto's en waardevolle spullen houden we apart"),
             ("Waar", "Heel de provincie Antwerpen"),
@@ -75,7 +75,7 @@ DIENSTEN = [
             "Wat bruikbaar is, krijgt een tweede leven via een kringwinkel of een goed doel",
             "De rest sorteren we en voeren we correct af. Nooit in een berm of bos",
             "Bezemschone oplevering, met foto's als u er niet bij kunt zijn",
-            "Ook appartementen, serviceflats en kamers in een woonzorgcentrum. Voor appartementen zetten we ook een liftwagen in.",
+            "Ook appartementen, serviceflats en kamers in een woonzorgcentrum. Voor appartementen regelen we ook een ladderlift. Die wordt apart aangerekend.",
         ],
         "foto": ('herinneringen', "Handen die oude familiefoto's in een album aanwijzen", "Foto's, brieven, een trouwalbum. Laaiop legt persoonlijke spullen apart voor de familie. Dat doen we voordat we iets afvoeren."),
 
@@ -103,7 +103,7 @@ DIENSTEN = [
         "kort_feiten": [
             ("Wat", "Meubels, huisraad, kleding, elektro, alles wat weg moet"),
             ("Hoeveel", "Van een kamer tot een volledige woning"),
-            ("Offerte", "Voorlopig via foto's, ter plaatse bevestigd"),
+            ("Offerte", "Voorlopig via foto's of video's, ter plaatse bevestigd"),
             ("Inbegrepen", "Demonteren, laden, afvoeren en vegen"),
             ("Waar", "Heel de provincie Antwerpen"),
         ],
@@ -130,24 +130,24 @@ DIENSTEN = [
         "slug": "appartement-leegmaken",
         "naam": "Appartement leegmaken",
         "kort": "Appartement",
-        "tegel": "Ook op de vijfde verdieping, met een liftwagen als de trap te smal is.",
+        "tegel": "Ook op de vijfde verdieping, met een ladderlift als de trap te smal is.",
         "icoon": "appartement",
         "toon": "je",
         "seo_titel": "Appartement leegmaken in de provincie Antwerpen | Laaiop",
-        "meta": "Appartement of serviceflat leegmaken? Laaiop regelt de liftwagen, maakt alles leeg en laat alles proper achter. Offerte vooraf.",
+        "meta": "Appartement of serviceflat leegmaken? Laaiop regelt de ladderlift, maakt alles leeg en laat alles proper achter. Offerte vooraf.",
         "h1": "Appartement of serviceflat leegmaken",
         "intro": "Een appartement leegmaken is vooral een kwestie van trappen en liften. Laaiop regelt dat. Jij zorgt voor wat plaats voor onze camionette en krijgt een duidelijke offerte en een lege, propere flat, klaar voor de verhuurder of de verkoop.",
         "cta": "Vraag je prijs aan",
         "kort_feiten": [
             ("Wat", "Appartement, studio, serviceflat of kamer in een woonzorgcentrum"),
-            ("Trappen en lift", "Liftwagen als de trap of lift te klein is"),
-            ("Offerte", "Voorlopig via foto's, ter plaatse bevestigd"),
+            ("Trappen en lift", "Ladderlift als de trap of lift te klein is, apart aangerekend"),
+            ("Offerte", "Voorlopig via foto's of video's, ter plaatse bevestigd"),
             ("Oplevering", "Leeg en geveegd, met foto's voor de verhuurder"),
             ("Waar", "Heel de provincie Antwerpen"),
         ],
         "wat": [
             "Het volledige appartement leegmaken, inclusief kelderberging en terras",
-            "Liftwagen voor zetels en kasten die niet door de trapzaal passen",
+            "Ladderlift voor zetels en kasten die niet door de trapzaal passen (apart aangerekend)",
             "Jij voorziet een plek voor de camionette, wij doen de rest. Een parkeerverbod is niet nodig",
             "Beschermen van de lift en de gemeenschappelijke delen",
             "Afspraken met de syndicus of conciërge, als je dat wil",
@@ -156,7 +156,7 @@ DIENSTEN = [
         "foto": ('lege-kamer', 'Lege, geveegde woonkamer met raam naar buiten', 'Zo levert Laaiop een appartement op: leeg, geveegd en klaar voor de plaatsbeschrijving.'),
 
         "faq": [
-            ("Het gebouw heeft geen lift. Is dat een probleem?", "Nee. We dragen alles naar beneden of zetten een liftwagen in. Vermeld de verdieping in je aanvraag, dan zit het in de prijs."),
+            ("Het gebouw heeft geen lift. Is dat een probleem?", "Nee. We dragen alles naar beneden of regelen een ladderlift. Vermeld de verdieping in je aanvraag. Is er een ladderlift nodig, laat het ons dan weten voor we de offerte maken. Wij regelen hem, maar hij wordt apart aangerekend."),
             ("Moet ik een parkeerverbod aanvragen?", "Nee, borden of een parkeerverbod via de gemeente zijn niet nodig. Zorg wel dat onze camionette op de dag zelf voor de deur of vlak in de buurt kan staan. Is parkeren bij jou lastig? Zeg het ons vooraf."),
             ("Hoe snel kan een serviceflat leeg zijn?", "Woonzorgcentra en serviceflats geven vaak weinig tijd. Laat ons de uiterste datum weten: we plannen de ontruiming op tijd in."),
             ("Nemen jullie ook de kelderberging mee?", "Ja. Kelderberging, zolderkamer en terras horen er gewoon bij. Zeg het wel even in je aanvraag."),
@@ -179,7 +179,7 @@ DIENSTEN = [
         "kort_feiten": [
             ("Wat", "Garage, zolder, kelder, tuinhuis, berging of carport"),
             ("Hoe lang", "Meestal een paar uur"),
-            ("Offerte", "Voorlopig via foto's, ter plaatse bevestigd"),
+            ("Offerte", "Voorlopig via foto's of video's, ter plaatse bevestigd"),
             ("Klein", "Ook kleine opdrachten zijn welkom"),
             ("Waar", "Heel de provincie Antwerpen"),
         ],
@@ -215,7 +215,7 @@ DIENSTEN = [
         "kort_feiten": [
             ("Wat", "Kantoren, winkels, praktijkruimtes, horeca en opslag"),
             ("Timing", "Op de afgesproken datum, ook buiten de openingsuren"),
-            ("Offerte", "Voorlopig via foto's, bevestigd na een plaatsbezoek"),
+            ("Offerte", "Voorlopig via foto's of video's, bevestigd na een plaatsbezoek"),
             ("Oplevering", "Netjes opgeleverd, met fotoverslag voor de verhuurder"),
             ("Waar", "Heel de provincie Antwerpen"),
         ],
@@ -251,7 +251,7 @@ DIENSTEN = [
         "kort_feiten": [
             ("Wat", "Zetels, matrassen, kasten, bedden, koelkasten, wasmachines"),
             ("Waar ophalen", "Binnen of buiten, ook van de verdieping"),
-            ("Offerte", "Voorlopig via foto's, ter plaatse bevestigd"),
+            ("Offerte", "Voorlopig via foto's of video's, ter plaatse bevestigd"),
             ("Afvoer", "Correct gesorteerd, elektro via Recupel"),
             ("Waar", "Heel de provincie Antwerpen"),
         ],
@@ -289,7 +289,7 @@ DIENSTEN = [
         "kort_feiten": [
             ("Wat", "Snoeiafval, takken, haagscheersel, bladeren en tuinafval"),
             ("Hoe", "Los of in zakken, wij laden alles op"),
-            ("Offerte", "Voorlopig via foto's, ter plaatse bevestigd"),
+            ("Offerte", "Voorlopig via foto's of video's, ter plaatse bevestigd"),
             ("Afvoer", "Naar de groencompostering"),
             ("Waar", "Heel de provincie Antwerpen"),
         ],
@@ -326,7 +326,7 @@ DIENSTEN = [
         "kort_feiten": [
             ("Wat", "Puin, tegels, hout, gyproc, isolatie, oude keukens en badkamers"),
             ("Geen container", "Wij laden op en rijden meteen weg"),
-            ("Offerte", "Voorlopig via foto's, ter plaatse bevestigd"),
+            ("Offerte", "Voorlopig via foto's of video's, ter plaatse bevestigd"),
             ("Niet", "Asbest: daarvoor is een erkende asbestverwijderaar nodig"),
             ("Waar", "Heel de provincie Antwerpen"),
         ],
@@ -364,7 +364,7 @@ DIENSTEN = [
             ("Wat", "Koelkasten, wasmachines, zetels, kasten, bedden, tafels"),
             ("Van waar", "Winkel, magazijn of verkoper via 2dehands en Marketplace"),
             ("Het oude", "Nemen we in dezelfde rit mee"),
-            ("Offerte", "Voorlopig via foto's, ter plaatse bevestigd"),
+            ("Offerte", "Voorlopig via foto's of video's, ter plaatse bevestigd"),
             ("Waar", "Heel de provincie Antwerpen"),
         ],
         "wat": [
@@ -399,7 +399,7 @@ DIENSTEN = [
             ("Reinigen", "Filters, binnenkant en ventilator ontvet"),
             ("Afbreken", "Oude dampkap gedemonteerd en afgevoerd"),
             ("Voor wie", "Particulieren, verhuurders en kleine zaken"),
-            ("Offerte", "Voorlopig via foto's, ter plaatse bevestigd"),
+            ("Offerte", "Voorlopig via foto's of video's, ter plaatse bevestigd"),
             ("Waar", "Heel de provincie Antwerpen"),
         ],
         "wat": [
@@ -443,8 +443,10 @@ SLUG_NAAR_FORM = {
 
 # Algemene veelgestelde vragen (home en FAQ-pagina)
 FAQ_ALGEMEEN = [
-    ("Wat kost een ontruiming bij Laaiop?", "Dat hangt af van het volume, de verdieping en wat er weg moet. Daarom staan er geen vaste prijzen op de site. Stuur ons duidelijke foto's: dan krijg je een voorlopige offerte. Die bevestigen we nadat we langs zijn geweest. Laden, transport, afvoer en opkuis zitten erin."),
-    ("Hoe snel krijg ik een prijs?", "Stuur ons een paar duidelijke foto's via WhatsApp of het formulier. We proberen iedereen binnen {{TERMIJN}} te antwoorden met een voorlopige offerte. Daarna komen we langs om die te bevestigen."),
+    ("Wat kost een ontruiming bij Laaiop?", "Dat hangt af van het volume, de verdieping en wat er weg moet. Daarom staan er geen vaste prijzen op de site. Stuur ons duidelijke foto's of video's: dan krijg je een voorlopige offerte. Die bevestigen we nadat we langs zijn geweest. Laden, transport, afvoer en opkuis zitten erin. Is er een ladderlift nodig, dan regelen wij die, maar die wordt apart aangerekend."),
+    ("Hoe snel krijg ik een prijs?", "Stuur ons een paar duidelijke foto's of video's via WhatsApp, of foto's via het formulier. We proberen iedereen binnen {{TERMIJN}} te antwoorden met een voorlopige offerte. Daarna komen we langs om die te bevestigen."),
+    ("Krijg ik korting als ik alles zelf klaarzet?", "Ja. Zet je alles wat weg mag klaar op het gelijkvloers, dan krijg je 10% korting op de totale prijs. Dat geldt voor alle ontruimingen en ophalingen, niet voor leveringen en dampkappen. Zeg het ons in je aanvraag, dan houden we er rekening mee in de offerte."),
+    ("Werken jullie ook in het weekend?", "Ja. Naast de weekdagen werken we op zaterdag de hele dag en op zondag een halve dag."),
     ("Waarom komen jullie ter plaatse?", "Op een foto zie je niet alles: wat er in kasten zit, hoe smal de trap is of waar we kunnen parkeren. Daarom is de offerte op basis van foto's voorlopig. We bevestigen ze nadat we langs zijn geweest. Zo is de prijs in je bevestigde offerte ook de prijs die je betaalt."),
     ("Moet ik een parkeerplaats voorzien?", "Ja, graag. Zorg dat onze camionette op de dag zelf voor de deur of vlak in de buurt kan staan, bijvoorbeeld op je oprit of op een vrije plek in de straat. Borden of een parkeerverbod via de gemeente zijn niet nodig. Is parkeren bij jou lastig? Laat het ons vooraf weten."),
     ("Moet ik aanwezig zijn?", "Nee. Je kunt ons de sleutel geven of iemand laten openen. Na afloop krijg je foto's van de lege ruimte."),
@@ -458,7 +460,7 @@ FAQ_ALGEMEEN = [
 INBEGREPEN = {
     "huis-leegmaken-na-overlijden": "Inclusief laden, afvoer en opkuis",
     "inboedel-opruimen": "Inclusief demonteren, laden, afvoeren en vegen",
-    "appartement-leegmaken": "Alles inbegrepen",
+    "appartement-leegmaken": "Alles inbegrepen, behalve een ladderlift",
     "garage-zolder-kelder-opruimen": "Inclusief afvoer",
     "kantoor-winkelpand-leegmaken": "Factuur met btw",
     "grofvuil-ophalen": "Ophalen en afvoer inbegrepen",

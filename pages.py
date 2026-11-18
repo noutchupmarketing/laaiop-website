@@ -24,7 +24,7 @@ def home():
     <div class="hero__tekst">
       <span class="eyebrow">Opruimen, ontruimen en leveren in de provincie Antwerpen</span>
       <h1 id="hero-titel">Laaiop maakt je woning, garage of zolder leeg. <em>Zonder verrassingen.</em></h1>
-      <p class="lead">Stuur ons een paar duidelijke foto's via WhatsApp. We proberen je binnen {ph("{{TERMIJN}}")} te antwoorden met een <strong>voorlopige offerte</strong>. Die bevestigen we nadat we langs zijn geweest, met laden, afvoer en opkuis erin.</p>
+      <p class="lead">Stuur ons een paar duidelijke foto's of video's via WhatsApp. We proberen je binnen {ph("{{TERMIJN}}")} te antwoorden met een <strong>voorlopige offerte</strong>. Die bevestigen we nadat we langs zijn geweest, met laden, afvoer en opkuis erin.</p>
       <div class="knoppen">
         <a class="knop knop--primair" href="/richtprijs/">Vraag je prijs aan</a>
         <a class="knop knop--rand" href="{wa_link()}" data-track="klik_whatsapp" data-locatie="hero" target="_blank" rel="noopener">{icoon("chat")}WhatsApp een foto</a>
@@ -39,7 +39,7 @@ def home():
 
     strook = f"""<section class="strook" aria-label="Waarom Laaiop">
   <div class="wrap"><ul>
-    <li>{icoon("camera")}<div><strong>Voorlopige offerte via foto's</strong><span>Meestal binnen {ph("{{TERMIJN}}")}</span></div></li>
+    <li>{icoon("camera")}<div><strong>Voorlopige offerte via foto's of video's</strong><span>Meestal binnen {ph("{{TERMIJN}}")}</span></div></li>
     <li>{icoon("euro")}<div><strong>Bevestigd na ons bezoek</strong><span>Vast, voor we beginnen</span></div></li>
     <li>{icoon("bezem")}<div><strong>Alles in één keer</strong><span>Laden, afvoeren, vegen</span></div></li>
     <li>{icoon("kringloop")}<div><strong>Tweede leven</strong><span>Bruikbaar gerief naar de kringwinkel</span></div></li>
@@ -294,7 +294,7 @@ def prijzen():
         ("kringloop", "Wat nog bruikbaar is", "Spullen die naar de kringwinkel kunnen, verlagen de afvoerkosten."),
     ])
     faq = [("Waarom staan er geen prijzen op de site?", "Omdat geen twee opdrachten hetzelfde zijn. Een volle zolder op de derde verdieping is iets anders dan een garage op de begane grond. Met een paar foto's krijg je snel een voorlopige offerte die past bij jouw opdracht."),
-           ("Hoe snel krijg ik een voorlopige offerte?", "We proberen iedereen binnen {{TERMIJN}} te antwoorden. Hoe duidelijker je foto's, hoe juister de voorlopige offerte."),
+           ("Hoe snel krijg ik een voorlopige offerte?", "We proberen iedereen binnen {{TERMIJN}} te antwoorden. Hoe duidelijker je foto's of video's, hoe juister de voorlopige offerte."),
            ("Is de prijs echt vast?", "De prijs in de offerte die we bevestigen nadat we langs zijn geweest, is de prijs die je betaalt. De voorlopige offerte op basis van foto's is een eerste inschatting. Staat er op de dag zelf duidelijk meer dan afgesproken, dan bespreken we dat met je voor we het meenemen."),
            ("Wat zit er in de prijs?", "Laden, dragen, demonteren, transport, de afvoerkosten bij de verwerker en vegen na afloop. Geen verborgen kosten."),
            ("Is het plaatsbezoek gratis?", "Ja. Voor een volledige woning of een groot pand komen we gratis en vrijblijvend langs om je voorlopige offerte te bevestigen."),
@@ -477,7 +477,7 @@ def werkgebied():
 <section class="sectie sectie--mist"><div class="wrap wrap--smal"><div class="artikel">
   <h2>Parkeren en toegang</h2>
   <p>Op de dag zelf heeft onze camionette een plek nodig voor de deur of vlak in de buurt. Voorzie daarvoor voldoende plaats, bijvoorbeeld je oprit of een vrije plek in de straat. Borden of een parkeerverbod via de gemeente zijn niet nodig. Is parkeren in je straat lastig, zoals in het centrum van Antwerpen, Mechelen of Lier? Zeg het ons vooraf, dan zoeken we samen een oplossing.</p>
-  <p>Voor appartementen zonder lift of met een smalle trap zetten we een liftwagen in. Ook dat staat in de offerte die je vooraf krijgt.</p>
+  <p>Voor appartementen zonder lift of met een smalle trap regelen we een ladderlift. Die wordt apart aangerekend. Laat het ons daarom weten voor we de offerte maken.</p>
 </div></div></section>""" + prijsblok()
     voeg_toe("werkgebied/", "Werkgebied: ontruiming in de provincie Antwerpen | Laaiop",
              "Laaiop werkt in de hele provincie Antwerpen: Antwerpen, Mechelen, Lier, Turnhout, Geel, Mol, Herentals, Brasschaat, Schoten, Mortsel, Boom, Kontich.",
@@ -509,7 +509,7 @@ def richtprijs():
     body = f"""<section class="paginahero paginahero--compact"><div class="wrap paginahero__in"><div class="paginahero__tekst">
   {kruimel([("Home", "/"), ("Prijs aanvragen en contact", None)])}
   <h1>Contact en prijs aanvragen</h1>
-  <p class="lead">Laat je gegevens achter, kies waarmee we kunnen helpen en voeg een paar duidelijke foto's toe. We proberen je binnen {ph("{{TERMIJN}}")} te antwoorden met een voorlopige offerte. Die bevestigen we nadat we langs zijn geweest.</p>
+  <p class="lead">Laat je gegevens achter, kies waarmee we kunnen helpen en voeg een paar duidelijke foto's toe. Video's stuur je via WhatsApp. We proberen je binnen {ph("{{TERMIJN}}")} te antwoorden met een voorlopige offerte. Die bevestigen we nadat we langs zijn geweest.</p>
 </div></div></section>
 <section class="sectie sectie--formulier" id="formulier"><div class="wrap"><div class="twee twee--brede-links">
   {form}
@@ -597,7 +597,7 @@ def bouw_paginas(g):
 def llms_txt(g):
     _laad(g)
     regels = ["# Laaiop", "",
-              "> Laaiop is een opruim- en ontruimingsdienst uit de provincie Antwerpen (België). Laaiop maakt woningen, appartementen, garages, zolders, kelders, kantoren en winkelpanden leeg, haalt grofvuil, groenafval en bouwafval op, levert nieuwe meubels en toestellen (en neemt het oude mee) en reinigt of demonteert dampkappen. Laaiop toont geen vaste prijzen: klanten sturen foto's en krijgen (meestal binnen 24 uur) een voorlopige offerte, die na een bezoek ter plaatse bevestigd wordt. Alles wordt gesorteerd afgevoerd en bezemschoon opgeleverd.",
+              "> Laaiop is een opruim- en ontruimingsdienst uit de provincie Antwerpen (België). Laaiop maakt woningen, appartementen, garages, zolders, kelders, kantoren en winkelpanden leeg, haalt grofvuil, groenafval en bouwafval op, levert nieuwe meubels en toestellen (en neemt het oude mee) en reinigt of demonteert dampkappen. Laaiop toont geen vaste prijzen: klanten sturen foto's of video's en krijgen (meestal binnen 12 uur) een voorlopige offerte, die na een bezoek ter plaatse bevestigd wordt. Alles wordt gesorteerd afgevoerd en bezemschoon opgeleverd.",
               "", "- Werkgebied: provincie Antwerpen (o.a. Antwerpen, Mechelen, Lier, Turnhout, Geel, Mol, Herentals, Brasschaat, Schoten, Mortsel, Boom, Kontich)",
               "- Taal: Nederlands (Vlaams)", "- Contact: " + SITE["email"], "- Belofte: Wij laden op. Jij ademt op.", "", "## Diensten", ""]
     for d in DIENSTEN:

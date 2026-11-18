@@ -237,7 +237,7 @@ def datalist():
     return '<datalist id="gemeenten">' + "".join('<option value="%s"></option>' % g for g in gem) + "</datalist>"
 
 def upload_veld(id_):
-    return f"""<div class="veld"><label for="{id_}">Foto's <span class="hint">(niet verplicht, met duidelijke foto's krijg je een betere offerte)</span></label>
+    return f"""<div class="veld"><label for="{id_}">Foto's <span class="hint">(niet verplicht, met duidelijke foto's krijg je een betere offerte. Video's stuur je via WhatsApp)</span></label>
   <div class="upload">{icoon("camera")}<strong><span class="alleen-mobiel">Kies foto's of neem er een</span><span class="alleen-desktop">Kies of sleep foto's hierheen</span></strong><span data-teller>Tot 10 foto's</span>
   <input id="{id_}" name="fotos" type="file" accept="image/*" multiple></div>
   <div class="voorbeelden" aria-live="polite"></div>
