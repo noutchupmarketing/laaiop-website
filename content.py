@@ -19,7 +19,7 @@ SITE = {
     "gtm_id": None,                           # bv. "GTM-ABC1234"  (activeert ook cookiebanner)
     "intro": True,                            # laadscherm bij het eerste bezoek per sessie (False = uit)
     "form_endpoint": "/api/aanvraag/",       # Vercel-functie in api/aanvraag.mjs (mailt via Resend naar info@laaiop.be)
-    "noindex": True,                          # True zolang de site een demo is. Bij lancering: False
+    "noindex": False,                         # True zolang de site een demo is. Bij lancering: False
     "binnenkort": False,                      # True: de site toont alleen het beginscherm "Binnenkort meer". Bij lancering: False
     "bijgewerkt": "2026-10-05",
 }
